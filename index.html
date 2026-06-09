@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<!--
+  Aliaskar — RPG character-sheet portfolio (full-screen game UI, light theme).
+  Data: character.js · Style: styles.css · Render + animation + ASCII bg: app.js
+  Run: open index.html (works on file://) or serve the folder. Deploy: GitHub Pages / Alyasska.github.io
+  Avatar bg removal: put a transparent cut at assets/avatar-cut.png (remove.bg) — auto-used; else falls back to avatar.png
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aliaskar Bekishev — character sheet</title>
+  <meta name="description" content="Aliaskar Bekishev — Systems Engineer. Portfolio as an RPG character sheet." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Press+Start+2P&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <canvas id="bg" aria-hidden="true"></canvas>
+  <div id="veil" aria-hidden="true"></div>
+  <div id="scan" aria-hidden="true"></div>
+  <canvas id="fx-overlay" aria-hidden="true"></canvas>
+  <div id="hud" aria-hidden="true"><i class="tl"></i><i class="tr"></i><i class="bl"></i><i class="br"></i></div>
+  <div id="cursor-ring" aria-hidden="true"></div>
+  <div id="cursor-dot" aria-hidden="true"></div>
+  <div class="app">
+    <header><div class="bar-x" id="hdr"></div></header>
+    <nav role="tablist" aria-label="character sheet sections"><div class="bar-x" id="nav"></div></nav>
+    <main id="main"></main>
+    <div class="status"><div class="bar-x" id="status"></div></div>
+  </div>
+
+  <script src="character.js"></script>
+  <script src="app.js"></script>
+  <script src="mapbg.js"></script>
+  <script src="fx.js"></script>
+  <script src="overlay.js"></script>
+</body>
+</html>

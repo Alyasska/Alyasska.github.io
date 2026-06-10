@@ -166,7 +166,7 @@
   const character = () => `
     <div class="grid">
       ${sidebar()}
-      <div>
+      <div class="char-main">
         <div class="panel"><div class="h2">about me</div><div class="codex" id="aboutCodex">${esc(C.codex)}</div></div>
         ${statHexagon()}
       </div>

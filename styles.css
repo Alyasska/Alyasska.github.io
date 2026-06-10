@@ -72,7 +72,10 @@ section[hidden]{display:none}
 .h2{display:inline-block; font-family:var(--pixel); font-size:16px; line-height:1; letter-spacing:1px;
    text-transform:uppercase; color:var(--paper); background:var(--ink); border:2px solid var(--ink);
    padding:3px 10px 1px; margin:0 0 11px}
-.grid{display:grid; grid-template-columns:290px 1fr; gap:18px; align-items:start}
+.grid{display:grid; grid-template-columns:290px 1fr; gap:18px; align-items:stretch}
+.char-main{display:flex; flex-direction:column; min-width:0}
+.char-main > .panel:last-child{flex:1; display:flex; flex-direction:column}
+.char-main > .panel:last-child .stats-row{flex:1}
 @media(max-width:780px){ .grid{grid-template-columns:1fr} }
 /* two-column quest/trial layout (fits more on one screen) */
 .q-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(290px,1fr)); gap:12px; align-items:start}
@@ -205,7 +208,7 @@ section[hidden]{display:none}
 .statpop b .sp-v{color:var(--paper)}
 .statpop::after{content:"▼"; position:absolute; left:50%; bottom:-13px; transform:translateX(-50%); color:var(--ink); font-size:15px; line-height:1}
 /* ---- 3D skill wheel (spin by moving the cursor) ---- */
-.skillwheel{position:relative; flex:0 0 auto; width:190px; height:248px; perspective:1150px; --sw-r:138px; cursor:ns-resize; margin:0}
+.skillwheel{position:relative; flex:0 0 auto; width:200px; height:300px; perspective:1250px; --sw-r:170px; cursor:ns-resize; margin:0}
 .sw-stage{position:absolute; inset:0; transform-style:preserve-3d; transform:rotateY(0deg); will-change:transform}
 .sw-card{position:absolute; left:50%; top:50%; width:152px; box-sizing:border-box; backface-visibility:hidden;
   border:2px solid var(--line-2); background:var(--panel); box-shadow:2px 2px 0 rgba(40,40,20,.16); padding:6px 9px}
@@ -227,7 +230,7 @@ section[hidden]{display:none}
   .skillwheel .sw-stage{position:static; transform:none !important; display:flex; flex-wrap:wrap; gap:8px; justify-content:center}
   .skillwheel .sw-card{position:static; transform:none !important; backface-visibility:visible; width:210px}
 }
-.hexradar{width:100%; max-width:300px; height:auto; overflow:visible}
+.hexradar{width:100%; max-width:330px; height:auto; overflow:visible}
 .hx-grid{fill:none; stroke:var(--line); stroke-width:1; opacity:.7}
 .hx-axis{stroke:var(--line); stroke-width:1; opacity:.45}
 .hx-fill{fill:rgba(35,107,87,.20); stroke:var(--accent); stroke-width:2; transform-box:fill-box; transform-origin:center;

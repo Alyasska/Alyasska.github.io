@@ -36,7 +36,7 @@ Have a look around — no rush.`,
 
   // work experience = quests
   quests: [
-    { title: "Keeper of the National Ledger", giver: "Climate Change Coordination Centre", dates: "2025–2026", status: "ACTIVE", diff: 4, exp: 1200,
+    { title: "Keeper of the National Ledger", giver: "Climate Change Coordination Centre", dates: "2026 – present", status: "ACTIVE", diff: 4, exp: 1200,
       log: [
         "Helped write part of Kazakhstan's official climate report to the UN.",
         "Built the first version of the country's greenhouse-gas forecast (a model called LEAP).",

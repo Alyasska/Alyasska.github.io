@@ -18,11 +18,9 @@ const CHARACTER = {
   },
 
   codex:
-`Hi, I'm Aliaskar. I figured out that everything I love is really the same move: take something big and tangled — a game, a made-up world, a festival, even a country's emissions — and build the system that makes it work (and feel good to be inside).
+`Hi, I'm Aliaskar. I like building things — games, little worlds in code, events, the odd climate model at work — and figuring out how the systems behind them fit together. It's usually the same itch: take something messy and try to make it work.
 
-I game-master at the table, grow whole worlds in code, model a country's climate, and run events for hundreds of people. Different surfaces, same instinct underneath.
-
-So I'm not a guy with a random pile of hobbies — I'm a worldbuilder who likes turning messy, complex things into systems you can actually step into. Have a look around: quests are what I've shipped, pets are what I'm building, guilds are my people. No rush.`,
+This is just an easy way to show what I've been up to. Have a look around — no rush.`,
 
   // 6 stats — each note just says, in plain words, what the stat means.
   stats: [

@@ -193,7 +193,15 @@ section[hidden]{display:none}
 .xp-num{font-family:var(--pixel); font-size:14px; color:var(--soft); font-variant-numeric:tabular-nums; white-space:nowrap}
 
 /* ---- stat hexagon (radar) ---- */
-.hx-wrap{display:flex; justify-content:center; padding:6px 0 2px}
+.hx-row{display:flex; align-items:center; justify-content:center; gap:14px; flex-wrap:wrap}
+.hx-wrap{flex:0 0 auto; display:flex; justify-content:center; padding:6px 0 2px}
+.perks{list-style:none; margin:0; padding:0; flex:1 1 150px; min-width:135px; max-width:215px; display:flex; flex-direction:column; gap:6px}
+.perks-head{font-family:var(--pixel); font-size:15px; color:var(--soft); letter-spacing:1px; text-transform:uppercase}
+.perk{font-size:12px; line-height:1.25; border:2px solid var(--ink); background:rgba(255,253,248,.85);
+  padding:3px 8px; display:flex; align-items:center; gap:6px; box-shadow:2px 2px 0 rgba(40,40,20,.12)}
+.perk::before{content:"◈"; color:var(--accent); flex:0 0 auto}
+.perks-soft .perk::before{content:"✦"; color:var(--gold)}
+@media(max-width:560px){ .perks{max-width:none; flex:1 1 100%} }
 .hexradar{width:100%; max-width:300px; height:auto; overflow:visible}
 .hx-grid{fill:none; stroke:var(--line); stroke-width:1; opacity:.7}
 .hx-axis{stroke:var(--line); stroke-width:1; opacity:.45}

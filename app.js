@@ -72,13 +72,18 @@
     const poly = S.map((s, i) => ptS(s.val, i)).join(" ");
     const dots = S.map((s, i) => { const [x, y] = pt(s.val, i); return `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="3" class="hx-dot"/>`; }).join("");
     const labels = S.map((s, i) => { const [x, y] = pt(11.8, i); return `<text x="${x.toFixed(1)}" y="${(y - 1).toFixed(1)}" class="hx-label">${esc(s.key)}</text><text x="${x.toFixed(1)}" y="${(y + 11).toFixed(1)}" class="hx-num">${s.val}</text>`; }).join("");
+    const perks = (arr, cls, head) => `<ul class="perks ${cls}"><li class="perks-head">${head}</li>${(arr || []).map(p => `<li class="perk">${esc(p)}</li>`).join("")}</ul>`;
     return `
       <div class="panel">
-        <div class="h2">Stats</div>
-        <div class="hx-wrap">
-          <svg viewBox="0 0 260 250" class="hexradar" role="img" aria-label="stats hexagon">
-            ${grid}${axes}<polygon points="${poly}" class="hx-fill"/>${dots}${labels}
-          </svg>
+        <div class="h2">Stats &amp; Perks</div>
+        <div class="hx-row">
+          ${perks(C.perks && C.perks.hard, "perks-hard", "Hard skills")}
+          <div class="hx-wrap">
+            <svg viewBox="0 0 260 250" class="hexradar" role="img" aria-label="stats hexagon">
+              ${grid}${axes}<polygon points="${poly}" class="hx-fill"/>${dots}${labels}
+            </svg>
+          </div>
+          ${perks(C.perks && C.perks.soft, "perks-soft", "Soft skills")}
         </div>
         <ul class="hx-legend">${S.map(s => `<li><b>${esc(s.key)}</b><span>${esc(s.label)}</span><i>${esc(s.note)}</i></li>`).join("")}</ul>
       </div>`;

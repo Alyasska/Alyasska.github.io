@@ -32,6 +32,12 @@ This is just an easy way to show what I've been up to. Have a look around — no
     { key: "LCK", label: "Luck",         val: 10, note: "good things keep finding me" },
   ],
 
+  // skills as RPG perks — flank the stat hexagon (hard = tech, soft = people)
+  perks: {
+    hard: ["Python", "React", "Machine Learning", "Signal Processing", "Data & Modeling", "Simulation / Procgen"],
+    soft: ["Game Mastering", "Worldbuilding", "Event Production", "Teaching", "Leadership", "Storytelling"],
+  },
+
   // work experience = quests
   quests: [
     { title: "Keeper of the National Ledger", giver: "Climate Change Coordination Centre", dates: "2026 – present", status: "ACTIVE", diff: 4, exp: 1200,

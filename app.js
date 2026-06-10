@@ -116,8 +116,10 @@
     </div>`;
 
   const quests = () => `
-    <div class="h2">Quest Log — contracts</div>${C.quests.map(questCard).join("")}
-    <div class="h2" style="margin-top:24px">Trials — tournaments &amp; hackathons</div>${C.trials.map(questCard).join("")}`;
+    <div class="h2">Quest Log — contracts</div>
+    <div class="q-grid">${C.quests.map(questCard).join("")}</div>
+    <div class="h2" style="margin-top:16px">Trials — tournaments &amp; hackathons</div>
+    <div class="q-grid">${C.trials.map(questCard).join("")}</div>`;
 
   const pets = () => `
     <div class="h2">Pets — pet projects 🐾</div>
@@ -136,7 +138,7 @@
     ${C.guilds.map(g => `
       <div class="card">
         <div class="row">
-          <div><h3>${esc(g.name)}</h3><div class="giver">${esc(g.org)} · ${esc(g.years)}</div></div>
+          <div class="g-head">${g.logo ? `<img class="g-logo" src="${esc(g.logo)}" alt="" loading="lazy">` : ""}<div><h3>${esc(g.name)}</h3><div class="giver">${esc(g.org)} · ${esc(g.years)}</div></div></div>
           <span class="badge active">${esc(g.rank)}</span>
         </div>
         <p style="margin:10px 0 0">${esc(g.blurb)}</p>

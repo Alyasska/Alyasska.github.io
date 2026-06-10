@@ -20,10 +20,22 @@
   $("hdr").innerHTML = `
     <div class="tag-class">${esc(C.class)}</div>
     <h1>${esc(C.name)} <span class="lvl">· Lv ${C.level}</span></h1>
-    <div class="xp" title="age ${C.level} → ${C.level + 1} on May 1 · ${xpPct}% of the year done">
-      <span class="xp-cap">XP</span>
-      <div class="xp-bar"><i style="width:${xpPct}%"></i></div>
-      <span class="xp-num">day ${ageDay}/${ageDays} · ${xpPct}% to Lv ${C.level + 1}</span>
+    <div class="bars">
+      <div class="xp" title="HP — restored by: plov, sleep, a free weekend">
+        <span class="xp-cap hp">HP</span>
+        <div class="xp-bar hp"><i style="width:90%"></i></div>
+        <span class="xp-num">9 / 10</span>
+      </div>
+      <div class="xp" title="MP — spent on: deep work, worldbuilding, late-night ideas">
+        <span class="xp-cap mp">MP</span>
+        <div class="xp-bar mp"><i style="width:75%"></i></div>
+        <span class="xp-num">15 / 20</span>
+      </div>
+      <div class="xp" title="age ${C.level} → ${C.level + 1} on May 1 · ${xpPct}% of the year done">
+        <span class="xp-cap">XP</span>
+        <div class="xp-bar"><i style="width:${xpPct}%"></i></div>
+        <span class="xp-num">day ${ageDay}/${ageDays} · ${xpPct}% to Lv ${C.level + 1}</span>
+      </div>
     </div>
     <p class="tagline">${esc(C.title)} — “${esc(C.tagline)}”</p>
     <div class="meta">
@@ -95,7 +107,7 @@
     <div class="grid">
       ${sidebar()}
       <div>
-        <div class="panel"><div class="h2">about me</div><div class="codex">${esc(C.codex)}</div></div>
+        <div class="panel"><div class="h2">about me</div><div class="codex" id="aboutCodex">${esc(C.codex)}</div></div>
         ${statHexagon()}
       </div>
     </div>`;
@@ -180,21 +192,45 @@
       $("panel-" + t.id).toggleAttribute("hidden", t.id !== id);
     });
     $("main").scrollTop = 0;
-    if (id === "character") animateStats();
+    if (id === "character") { animateStats(); typeAbout(); }
     history.replaceState(null, "", "#" + id);
   }
   $("nav").addEventListener("click", e => { const b = e.target.closest(".tab"); if (b) select(b.id.replace("tab-", "")); });
+  $("nav").addEventListener("keydown", e => {            // arrow-key tab nav (also correct a11y)
+    if (e.key !== "ArrowLeft" && e.key !== "ArrowRight") return;
+    e.preventDefault();
+    const cur = TABS.findIndex(t => $("tab-" + t.id).getAttribute("aria-selected") === "true");
+    const ni = (cur + (e.key === "ArrowRight" ? 1 : -1) + TABS.length) % TABS.length;
+    select(TABS[ni].id); $("tab-" + TABS[ni].id).focus();
+  });
+
+  /* ---------- typewriter "about me" (NPC dialogue) ---------- */
+  let aboutTyped = false;
+  function typeAbout() {
+    const el = $("aboutCodex");
+    if (!el || aboutTyped) return;
+    const full = el.dataset.full || el.textContent || "";
+    el.dataset.full = full; aboutTyped = true;
+    const reduce = typeof matchMedia !== "undefined" && matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduce || !full) { el.textContent = full; return; }
+    let i = 0; el.textContent = ""; el.classList.add("typing");
+    el.addEventListener("click", () => { i = full.length; el.textContent = full; el.classList.remove("typing"); });
+    (function tick() {
+      if (i < full.length) { i++; el.textContent = full.slice(0, i); setTimeout(tick, full[i - 1] === "\n" ? 55 : 16); }
+      else el.classList.remove("typing");
+    })();
+  }
 
   /* ---------- status bar ---------- */
   $("status").innerHTML =
-    `<span>● <b>LVL ${C.level}</b> · ${esc(C.class)} · ${esc(C.origin)}</span>
-     <span><a href="mailto:${esc(C.contact.email)}">${esc(C.contact.email)}</a> · <a href="${esc(C.contact.github)}" target="_blank" rel="noopener">github.com/Alyasska</a></span>`;
+    `<span>● <b>LVL ${C.level}</b> · ${esc(C.class)} · REGION: ${esc(C.origin.split(",")[0].toUpperCase())}</span>
+     <span>SAVE ✓ autosaved · <a href="mailto:${esc(C.contact.email)}">${esc(C.contact.email)}</a> · <a href="${esc(C.contact.github)}" target="_blank" rel="noopener">/Alyasska</a></span>`;
 
   /* ---------- init ---------- */
   mountAvatar($("avatarFrame"));
   const fromHash = location.hash.replace("#", "");
   if (TABS.some(t => t.id === fromHash) && fromHash !== "character") select(fromHash);
-  else requestAnimationFrame(animateStats);
+  else { requestAnimationFrame(animateStats); typeAbout(); }
 
   /* animated ASCII island background lives in mapbg.js */
 })();

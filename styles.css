@@ -7,6 +7,8 @@
   --accent:#236b57; --accent-soft:#236b5714; --gold:#a87b2c; --link:#2a5db0;
   --shadow:0 1px 0 #fff inset, 0 6px 22px rgba(40,40,20,.07);
   --mono:"JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --pixel:"VT323", ui-monospace, monospace;
+  --hp:#b4452f; --mp:#2a5db0;
   --r:12px;
 }
 *{box-sizing:border-box}
@@ -30,7 +32,7 @@ a{color:var(--link); text-decoration:none} a:hover{text-decoration:underline}
 
 /* ---- header ---- */
 .app > header{padding:11px 0 7px; flex:0 0 auto}
-.tag-class{color:var(--accent); font-weight:700; letter-spacing:.06em; font-size:12px; text-transform:uppercase}
+.tag-class{font-family:var(--pixel); color:var(--accent); letter-spacing:.06em; font-size:15px; text-transform:uppercase}
 h1{margin:.16em 0 .16em; font-family:"Press Start 2P", var(--mono); font-weight:400;
    font-size:clamp(14px,2.3vw,22px); line-height:1.32; letter-spacing:0}
 .lvl{color:var(--gold); font-weight:700}
@@ -39,16 +41,17 @@ h1{margin:.16em 0 .16em; font-family:"Press Start 2P", var(--mono); font-weight:
 .meta a{color:var(--ink)}
 
 /* ---- nav (game menu) ---- */
-nav{flex:0 0 auto; border-top:1px solid var(--line); border-bottom:1px solid var(--line);
-   background:#fffdf8ee; backdrop-filter:blur(6px)}
+nav{flex:0 0 auto; border-top:2px solid var(--ink); border-bottom:2px solid var(--ink);
+   background:#fffdf8ee}
 nav .bar-x{display:flex; gap:4px; flex-wrap:wrap; padding-top:7px; padding-bottom:7px}
-.tab{font:inherit; cursor:pointer; border:1px solid transparent; background:none; color:var(--soft);
-   padding:6px 13px; border-radius:8px; letter-spacing:.03em; position:relative; transition:.15s}
-.tab::before{content:"▸ "; color:var(--line-2); transition:.15s}
-.tab:hover{color:var(--ink); background:#0000000a}
-.tab[aria-selected="true"]{color:var(--accent); background:rgba(255,253,248,.82); border-color:var(--line);
-   box-shadow:0 2px 10px rgba(35,107,87,.10); font-weight:700}
-.tab[aria-selected="true"]::before{content:"◆ "; color:var(--accent)}
+.tab{font-family:var(--pixel); font-size:17px; cursor:pointer; border:2px solid transparent; background:none; color:var(--soft);
+   padding:3px 12px 1px; border-radius:0; letter-spacing:.04em; text-transform:uppercase; position:relative}
+.tab::before{content:"▸ "; color:var(--line-2)}
+.tab:hover{color:var(--ink); background:#0000000d}
+.tab[aria-selected="true"]{color:var(--accent); background:var(--paper); border-color:var(--ink);
+   box-shadow:2px 2px 0 rgba(40,40,20,.18)}
+.tab[aria-selected="true"]::before{content:"◆ "; color:var(--accent); animation:blink 1s infinite}
+@keyframes blink{0%,50%{opacity:1}51%,100%{opacity:0}}
 
 /* ---- main (scrolls; fills remaining height) ---- */
 main{flex:1 1 auto; overflow-y:auto; overflow-x:hidden; padding:14px 0 20px; scrollbar-width:thin;
@@ -61,14 +64,14 @@ section[hidden]{display:none}
 @keyframes rise{from{opacity:0; transform:translateY(8px)} to{opacity:1; transform:none}}
 
 /* ---- status bar (HUD footer) ---- */
-.status{flex:0 0 auto; border-top:1px solid var(--line); background:#fffdf8ee; font-size:11.5px; color:var(--soft)}
+.status{flex:0 0 auto; border-top:2px solid var(--ink); background:#fffdf8ee; font-family:var(--pixel); font-size:14px; color:var(--soft)}
 .status .bar-x{display:flex; justify-content:space-between; gap:10px; padding:7px 22px; flex-wrap:wrap}
 .status b{color:var(--accent)}
 
 /* ---- headings ---- */
-.h2{font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:var(--accent); margin:0 0 10px;
-   display:flex; align-items:center; gap:10px}
-.h2::after{content:""; flex:1; height:1px; background:linear-gradient(90deg,var(--line),transparent)}
+.h2{display:inline-block; font-family:var(--pixel); font-size:16px; line-height:1; letter-spacing:1px;
+   text-transform:uppercase; color:var(--paper); background:var(--ink); border:2px solid var(--ink);
+   padding:3px 10px 1px; margin:0 0 11px}
 .grid{display:grid; grid-template-columns:260px 1fr; gap:18px; align-items:start}
 @media(max-width:780px){ .grid{grid-template-columns:1fr} }
 /* two-column quest/trial layout (fits more on one screen) */
@@ -79,8 +82,8 @@ section[hidden]{display:none}
 .g-logo{width:44px; height:44px; border-radius:9px; object-fit:cover; border:1px solid var(--line); background:#fff; flex:0 0 auto}
 
 /* ---- panels (HUD windows) ---- */
-.panel{position:relative; background:rgba(255,253,248,.82); border:1px solid var(--line); border-radius:var(--r);
-   padding:13px 14px; box-shadow:0 8px 24px rgba(40,40,20,.07); animation:rise .4s ease both; backdrop-filter:blur(2px)}
+.panel{position:relative; background:rgba(255,253,248,.95); border:2px solid var(--ink); border-radius:0;
+   padding:13px 14px; box-shadow:3px 3px 0 rgba(40,40,20,.2); animation:rise .4s ease both}
 .panel + .panel{margin-top:12px}
 
 /* ---- avatar ---- */
@@ -93,7 +96,7 @@ section[hidden]{display:none}
 .avatar{position:relative; z-index:1; width:100%; height:100%; object-fit:cover; border-radius:10px; display:block;
    filter:contrast(1.03) saturate(.96); background:#e9e4d6}
 .avatar.cut{object-fit:contain; border-radius:0; background:none;
-   filter:contrast(1.02) saturate(1.03); animation:floaty 22s ease-in-out infinite;
+   filter:contrast(1.02) saturate(1.03); animation:floaty 2.6s steps(2,end) infinite;
    -webkit-mask-image:linear-gradient(to bottom,#000 80%,transparent 99%);
    mask-image:linear-gradient(to bottom,#000 80%,transparent 99%)}
 @keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
@@ -116,13 +119,14 @@ section[hidden]{display:none}
 .stat.peak .bar > i{background:linear-gradient(90deg,var(--accent),#3a9b7e); box-shadow:0 0 10px #236b5766}
 
 /* ---- cards ---- */
-.card{position:relative; background:rgba(255,253,248,.82); border:1px solid var(--line); border-left:3px solid var(--accent);
-   border-radius:10px; padding:12px 14px; margin-bottom:10px; box-shadow:var(--shadow); transition:.18s}
-.card:hover{transform:translateY(-2px); border-left-color:var(--gold); box-shadow:0 10px 26px rgba(40,40,20,.1); z-index:4}
+.card{position:relative; background:rgba(255,253,248,.95); border:2px solid var(--ink); border-left:5px solid var(--accent);
+   border-radius:0; padding:12px 14px; margin-bottom:10px; box-shadow:3px 3px 0 rgba(40,40,20,.18);
+   transition:transform .1s steps(2,end), box-shadow .1s steps(2,end), border-color .1s}
+.card:hover{transform:translate(-1px,-2px); border-left-color:var(--gold); box-shadow:5px 5px 0 rgba(40,40,20,.22); z-index:4}
 .card h3{margin:0; font-size:15px}
 .card .giver{color:var(--soft); font-size:12.5px; margin-top:2px}
 .card .row{display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap; align-items:flex-start}
-.badge{font-size:10.5px; font-weight:700; letter-spacing:.06em; padding:2px 9px; border-radius:999px; border:1px solid; white-space:nowrap}
+.badge{font-family:var(--pixel); font-size:13px; letter-spacing:.04em; padding:1px 8px 0; border-radius:0; border:2px solid; white-space:nowrap; text-transform:uppercase}
 .badge.active{color:var(--accent); border-color:var(--accent); background:var(--accent-soft)}
 .badge.complete{color:var(--soft); border-color:var(--line-2); background:#00000006}
 .diff{color:var(--gold); letter-spacing:1px; font-size:13px}
@@ -153,9 +157,9 @@ section[hidden]{display:none}
 
 /* ---- pets ---- */
 .pets{display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:14px}
-.pet{position:relative; background:rgba(255,253,248,.82); border:1px solid var(--line); border-radius:12px; padding:16px;
-   box-shadow:var(--shadow); transition:.18s; overflow:hidden}
-.pet:hover{transform:translateY(-3px) rotate(-.3deg); box-shadow:0 14px 30px rgba(40,40,20,.12)}
+.pet{position:relative; background:rgba(255,253,248,.95); border:2px solid var(--ink); border-radius:0; padding:16px;
+   box-shadow:3px 3px 0 rgba(40,40,20,.18); transition:transform .1s steps(2,end), box-shadow .1s steps(2,end); overflow:hidden}
+.pet:hover{transform:translate(-1px,-2px); box-shadow:5px 5px 0 rgba(40,40,20,.22)}
 .pet .sigil{font-size:26px; color:var(--accent); line-height:1; transition:.3s}
 .pet:hover .sigil{transform:scale(1.15) rotate(6deg)}
 .pet h3{margin:.25em 0 0; font-size:15px}
@@ -166,7 +170,8 @@ section[hidden]{display:none}
 .chip{font-size:10.5px; color:var(--soft); background:#00000006; border:1px solid var(--line); border-radius:6px; padding:2px 7px}
 
 /* ---- codex / lists ---- */
-.codex{white-space:pre-line; max-width:62ch}
+.codex{white-space:pre-line; max-width:62ch; min-height:4.5em}
+.codex.typing::after{content:"▮"; color:var(--accent); animation:blink 1s infinite}
 .ach{list-style:none; padding:0; margin:0}
 .ach li{padding:7px 0; border-bottom:1px dashed var(--line); transition:.15s}
 .ach li:hover{padding-left:6px; color:var(--accent)}
@@ -174,13 +179,18 @@ section[hidden]{display:none}
 
 @media(prefers-reduced-motion:reduce){ *{animation:none !important; transition:none !important} }
 /* ---- XP bar (header) ---- */
-.xp{display:flex; align-items:center; gap:8px; margin:4px 0 6px; max-width:360px}
-.xp-cap{font:700 10px var(--mono); color:var(--gold); letter-spacing:.12em}
-.xp-bar{flex:1; height:9px; background:#e9e3d4; border:1px solid var(--line); border-radius:7px; overflow:hidden}
-.xp-bar > i{display:block; height:100%; border-radius:7px; background:linear-gradient(90deg,var(--accent),#3a9b7e);
-  box-shadow:0 0 8px #236b5755; animation:xpfill 1.3s cubic-bezier(.2,.8,.2,1) both}
+.bars{display:flex; flex-direction:column; gap:3px; max-width:380px; margin:5px 0 6px}
+.xp{display:flex; align-items:center; gap:8px}
+.xp-cap{font-family:var(--pixel); font-size:14px; color:var(--gold); letter-spacing:.06em; width:26px}
+.xp-cap.hp{color:var(--hp)} .xp-cap.mp{color:var(--mp)}
+.xp-bar{flex:1; height:11px; background:#e3ddcd; border:2px solid var(--ink); border-radius:0; overflow:hidden}
+.xp-bar > i{display:block; height:100%; background:var(--accent);
+  -webkit-mask:repeating-linear-gradient(90deg,#000 0 6px,transparent 6px 8px);
+  mask:repeating-linear-gradient(90deg,#000 0 6px,transparent 6px 8px);
+  animation:xpfill 1.2s steps(14,end) both}
+.xp-bar.hp > i{background:var(--hp)} .xp-bar.mp > i{background:var(--mp)}
 @keyframes xpfill{from{width:0}}
-.xp-num{font:700 11px var(--mono); color:var(--soft); font-variant-numeric:tabular-nums; white-space:nowrap}
+.xp-num{font-family:var(--pixel); font-size:14px; color:var(--soft); font-variant-numeric:tabular-nums; white-space:nowrap}
 
 /* ---- stat hexagon (radar) ---- */
 .hx-wrap{display:flex; justify-content:center; padding:6px 0 2px}
@@ -191,8 +201,8 @@ section[hidden]{display:none}
   filter:drop-shadow(0 1px 4px rgba(35,107,87,.25)); animation:hxgrow .85s cubic-bezier(.2,.9,.2,1) both}
 @keyframes hxgrow{from{transform:scale(.05); opacity:0} to{transform:scale(1); opacity:1}}
 .hx-dot{fill:var(--gold); stroke:#fff; stroke-width:1}
-.hx-label{fill:var(--accent); font:700 11px var(--mono); text-anchor:middle}
-.hx-num{fill:var(--gold); font:700 10px var(--mono); text-anchor:middle}
+.hx-label{fill:var(--accent); font:400 15px var(--pixel); text-anchor:middle}
+.hx-num{fill:var(--gold); font:400 14px var(--pixel); text-anchor:middle}
 .hx-legend{list-style:none; padding:0; margin:14px 0 0; font-size:12.5px}
 .hx-legend li{display:flex; gap:9px; align-items:baseline; padding:5px 0; border-bottom:1px dashed var(--line)}
 .hx-legend li:last-child{border:0}
@@ -202,7 +212,7 @@ section[hidden]{display:none}
 @media(max-width:520px){ .hx-legend span{min-width:0} .hx-legend li{flex-wrap:wrap} }
 
 /* ---- exp chip on quests ---- */
-.exp-chip{margin-top:4px; font:700 10.5px var(--mono); color:var(--accent); white-space:nowrap}
+.exp-chip{margin-top:4px; font-family:var(--pixel); font-size:13px; color:var(--accent); white-space:nowrap}
 
 /* ---- custom cursor ---- */
 body.fx-cursor, body.fx-cursor a, body.fx-cursor button, body.fx-cursor .tab,

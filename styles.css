@@ -195,12 +195,21 @@ section[hidden]{display:none}
 /* ---- stat hexagon (radar) ---- */
 .hx-row{display:flex; align-items:center; justify-content:center; gap:14px; flex-wrap:wrap}
 .hx-wrap{flex:0 0 auto; display:flex; justify-content:center; padding:6px 0 2px}
-.perks{list-style:none; margin:0; padding:0; flex:1 1 150px; min-width:135px; max-width:215px; display:flex; flex-direction:column; gap:6px}
-.perks-head{font-family:var(--pixel); font-size:15px; color:var(--soft); letter-spacing:1px; text-transform:uppercase}
-.perk{font-size:12px; line-height:1.25; border:2px solid var(--ink); background:rgba(255,253,248,.85);
-  padding:3px 8px; display:flex; align-items:center; gap:6px; box-shadow:2px 2px 0 rgba(40,40,20,.12)}
-.perk::before{content:"◈"; color:var(--accent); flex:0 0 auto}
-.perks-soft .perk::before{content:"✦"; color:var(--gold)}
+.perks{list-style:none; margin:0; padding:0; flex:1 1 165px; min-width:150px; max-width:235px; display:flex; flex-direction:column; gap:7px}
+.perk{border:2px solid var(--line-2); background:rgba(255,253,248,.92); padding:4px 8px 5px;
+  box-shadow:2px 2px 0 rgba(40,40,20,.12); display:flex; flex-direction:column; gap:1px;
+  transition:transform .1s steps(2,end), box-shadow .1s steps(2,end)}
+.perk:hover{transform:translate(-1px,-1px); box-shadow:3px 3px 0 rgba(40,40,20,.2)}
+.pk-top{display:flex; align-items:center; justify-content:space-between; gap:6px}
+.pk-name{font-family:var(--pixel); font-size:15px; line-height:1.1; letter-spacing:.3px}
+.pk-rank{font-size:9px; letter-spacing:1px; white-space:nowrap}
+.pk-rank .dim{opacity:.22}
+.pk-tools{font-size:10.5px; color:var(--soft); line-height:1.2}
+.perk.common{border-color:var(--line-2)} .perk.common .pk-name,.perk.common .pk-rank{color:var(--soft)}
+.perk.rare{border-color:var(--mp)} .perk.rare .pk-name,.perk.rare .pk-rank{color:var(--mp)}
+.perk.epic{border-color:#7a4fa3} .perk.epic .pk-name,.perk.epic .pk-rank{color:#7a4fa3}
+.perk.legendary{border-color:var(--gold); box-shadow:2px 2px 0 #a87b2c40, 0 0 10px #a87b2c30}
+.perk.legendary .pk-name,.perk.legendary .pk-rank{color:var(--gold)}
 @media(max-width:560px){ .perks{max-width:none; flex:1 1 100%} }
 .hexradar{width:100%; max-width:300px; height:auto; overflow:visible}
 .hx-grid{fill:none; stroke:var(--line); stroke-width:1; opacity:.7}

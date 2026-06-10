@@ -72,18 +72,22 @@
     const poly = S.map((s, i) => ptS(s.val, i)).join(" ");
     const dots = S.map((s, i) => { const [x, y] = pt(s.val, i); return `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="3" class="hx-dot"/>`; }).join("");
     const labels = S.map((s, i) => { const [x, y] = pt(11.8, i); return `<text x="${x.toFixed(1)}" y="${(y - 1).toFixed(1)}" class="hx-label">${esc(s.key)}</text><text x="${x.toFixed(1)}" y="${(y + 11).toFixed(1)}" class="hx-num">${s.val}</text>`; }).join("");
-    const perks = (arr, cls, head) => `<ul class="perks ${cls}"><li class="perks-head">${head}</li>${(arr || []).map(p => `<li class="perk">${esc(p)}</li>`).join("")}</ul>`;
+    const rankStars = (r) => `${"★".repeat(r)}<span class="dim">${"★".repeat(5 - r)}</span>`;
+    const skill = (p) => `<li class="perk ${esc(p.tier)}" title="${esc(p.name)} — ${esc(p.tools)}">
+          <div class="pk-top"><span class="pk-name">${esc(p.icon)} ${esc(p.name)}</span><span class="pk-rank">${rankStars(p.rank)}</span></div>
+          <div class="pk-tools">⚒ ${esc(p.tools)}</div></li>`;
+    const perkCol = (side) => `<ul class="perks">${(C.perks || []).filter(p => p.side === side).map(skill).join("")}</ul>`;
     return `
       <div class="panel">
-        <div class="h2">Stats &amp; Perks</div>
+        <div class="h2">Stats &amp; Skills</div>
         <div class="hx-row">
-          ${perks(C.perks && C.perks.hard, "perks-hard", "Hard skills")}
+          ${perkCol("hard")}
           <div class="hx-wrap">
             <svg viewBox="0 0 260 250" class="hexradar" role="img" aria-label="stats hexagon">
               ${grid}${axes}<polygon points="${poly}" class="hx-fill"/>${dots}${labels}
             </svg>
           </div>
-          ${perks(C.perks && C.perks.soft, "perks-soft", "Soft skills")}
+          ${perkCol("soft")}
         </div>
         <ul class="hx-legend">${S.map(s => `<li><b>${esc(s.key)}</b><span>${esc(s.label)}</span><i>${esc(s.note)}</i></li>`).join("")}</ul>
       </div>`;

@@ -32,11 +32,19 @@ This is just an easy way to show what I've been up to. Have a look around — no
     { key: "LCK", label: "Luck",         val: 10, note: "good things keep finding me" },
   ],
 
-  // skills as RPG perks — flank the stat hexagon (hard = tech, soft = people)
-  perks: {
-    hard: ["Python", "React", "Machine Learning", "Signal Processing", "Data & Modeling", "Simulation / Procgen"],
-    soft: ["Game Mastering", "Worldbuilding", "Event Production", "Teaching", "Leadership", "Storytelling"],
-  },
+  // skills as RPG abilities (a tool ≠ a skill — tools just power each ability). side = flank of the hexagon.
+  perks: [
+    { name: "Systems Architect", icon: "◈", rank: 4, tier: "epic",      tools: "Python · simulation",            side: "hard" },
+    { name: "Signal Seer",       icon: "≈", rank: 4, tier: "rare",      tools: "DSP · adaptive filters",         side: "hard" },
+    { name: "Model Trainer",     icon: "⚙", rank: 3, tier: "rare",      tools: "PyTorch · scikit-learn · YOLOv8", side: "hard" },
+    { name: "Interface Smith",   icon: "❖", rank: 4, tier: "rare",      tools: "React · JavaScript",             side: "hard" },
+    { name: "Cartographer",      icon: "⬡", rank: 3, tier: "rare",      tools: "maps · GIS · LEAP",              side: "hard" },
+    { name: "Dungeon Master",    icon: "⚄", rank: 5, tier: "legendary", tools: "D&D · Lancer · PbtA · 150+ games", side: "soft" },
+    { name: "World Weaver",      icon: "✶", rank: 4, tier: "epic",      tools: "lore · procgen · maps",          side: "soft" },
+    { name: "Crowd Caller",      icon: "❂", rank: 4, tier: "rare",      tools: "festivals 1000+ · PR",           side: "soft" },
+    { name: "Mentor's Voice",    icon: "✎", rank: 3, tier: "common",    tools: "teaching · lesson design",       side: "soft" },
+    { name: "Tongue of Many",    icon: "⌘", rank: 3, tier: "common",    tools: "KZ · RU · EN · JP",              side: "soft" },
+  ],
 
   // work experience = quests
   quests: [

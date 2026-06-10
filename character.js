@@ -5,9 +5,9 @@
 const CHARACTER = {
   name: "Aliaskar Bekishev",
   class: "System Engineer",
-  title: "the generalist",
+  title: "the Worldbuilder",
   level: 23,
-  tagline: "I do a bunch of different things, and I have fun doing them.",
+  tagline: "Different worlds, one instinct — I build the systems that make them work.",
   origin: "Astana, Kazakhstan",
   avatar: "assets/avatar.png",
   languages: ["Kazakh — native", "Russian — native", "English — C1", "Japanese — learning"],
@@ -18,11 +18,11 @@ const CHARACTER = {
   },
 
   codex:
-`Hi, I'm Aliaskar. I'm still figuring a lot out, but I like trying my hand at many things — a bit of coding, some data and research, running game nights, drawing maps for fun.
+`Hi, I'm Aliaskar. I figured out that everything I love is really the same move: take something big and tangled — a game, a made-up world, a festival, even a country's emissions — and build the system that makes it work (and feel good to be inside).
 
-None of this is meant to brag. I just enjoy learning, making things, and bringing people together. A character sheet felt like the friendliest way to show what I've been up to.
+I game-master at the table, grow whole worlds in code, model a country's climate, and run events for hundreds of people. Different surfaces, same instinct underneath.
 
-Have a look around — no rush.`,
+So I'm not a guy with a random pile of hobbies — I'm a worldbuilder who likes turning messy, complex things into systems you can actually step into. Have a look around: quests are what I've shipped, pets are what I'm building, guilds are my people. No rush.`,
 
   // 6 stats — each note just says, in plain words, what the stat means.
   stats: [

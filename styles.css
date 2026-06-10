@@ -205,13 +205,13 @@ section[hidden]{display:none}
 .statpop b .sp-v{color:var(--paper)}
 .statpop::after{content:"▼"; position:absolute; left:50%; bottom:-13px; transform:translateX(-50%); color:var(--ink); font-size:15px; line-height:1}
 /* ---- 3D skill wheel (spin by moving the cursor) ---- */
-.skillwheel{position:relative; flex:0 0 auto; width:206px; height:300px; perspective:920px; --sw-r:150px; cursor:ns-resize; margin:0}
+.skillwheel{position:relative; flex:0 0 auto; width:190px; height:248px; perspective:1150px; --sw-r:138px; cursor:ns-resize; margin:0}
 .sw-stage{position:absolute; inset:0; transform-style:preserve-3d; transform:rotateY(0deg); will-change:transform}
-.sw-card{position:absolute; left:50%; top:50%; width:188px; min-height:80px; box-sizing:border-box; backface-visibility:hidden;
-  border:2px solid var(--line-2); background:var(--panel); box-shadow:3px 3px 0 rgba(40,40,20,.18); padding:9px 12px}
-.sw-card .pk-name{font-family:var(--pixel); font-size:21px; line-height:1.04; display:block}
-.sw-card .pk-rank{font-size:12px; letter-spacing:2px; margin:4px 0 5px; white-space:nowrap}
-.sw-card .pk-tools{font-size:12px; color:var(--soft); line-height:1.2}
+.sw-card{position:absolute; left:50%; top:50%; width:152px; box-sizing:border-box; backface-visibility:hidden;
+  border:2px solid var(--line-2); background:var(--panel); box-shadow:2px 2px 0 rgba(40,40,20,.16); padding:6px 9px}
+.sw-card .pk-name{font-family:var(--pixel); font-size:16px; line-height:1.05; display:block}
+.sw-card .pk-rank{font-size:10px; letter-spacing:1.5px; margin:3px 0; white-space:nowrap}
+.sw-card .pk-tools{font-size:10.5px; color:var(--soft); line-height:1.2}
 .pk-rank .dim{opacity:.22}
 .sw-card.common{border-color:var(--line-2)} .sw-card.common .pk-name,.sw-card.common .pk-rank{color:var(--soft)}
 .sw-card.rare{border-color:var(--mp)} .sw-card.rare .pk-name,.sw-card.rare .pk-rank{color:var(--mp)}

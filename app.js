@@ -108,15 +108,21 @@
     wheel._init = true;
     const reduce = typeof matchMedia !== "undefined" && matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reduce) { wheel.classList.add("flat"); return; }
+    const cards = stage.querySelectorAll ? Array.prototype.slice.call(stage.querySelectorAll(".sw-card")) : [];
+    const step = 360 / (cards.length || 1);
     let angle = 0, vel = -0.18, target = -0.18;
     wheel.addEventListener("mousemove", (e) => {
       const r = wheel.getBoundingClientRect();
-      target = ((e.clientY - r.top) / r.height - 0.5) * 7;   // cursor Y → spin (vertical wheel)
+      target = ((e.clientY - r.top) / r.height - 0.5) * 6.5;   // cursor Y → spin (vertical wheel)
     }, { passive: true });
     wheel.addEventListener("mouseleave", () => { target = -0.18; });   // gentle auto-drift
     (function loop() {
       vel += (target - vel) * 0.08; angle += vel;
       stage.style.transform = `rotateX(${angle.toFixed(2)}deg)`;
+      for (let i = 0; i < cards.length; i++) {            // depth fade — sells the 3D
+        const c = Math.cos((i * step + angle) * Math.PI / 180);
+        cards[i].style.opacity = c > 0.02 ? (0.16 + 0.84 * c).toFixed(2) : "0";
+      }
       requestAnimationFrame(loop);
     })();
   }

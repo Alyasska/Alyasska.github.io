@@ -195,22 +195,29 @@ section[hidden]{display:none}
 /* ---- stat hexagon (radar) ---- */
 .hx-row{display:flex; align-items:center; justify-content:center; gap:14px; flex-wrap:wrap}
 .hx-wrap{flex:0 0 auto; display:flex; justify-content:center; padding:6px 0 2px}
-.perks{list-style:none; margin:0; padding:0; flex:1 1 165px; min-width:150px; max-width:235px; display:flex; flex-direction:column; gap:7px}
-.perk{border:2px solid var(--line-2); background:rgba(255,253,248,.92); padding:4px 8px 5px;
-  box-shadow:2px 2px 0 rgba(40,40,20,.12); display:flex; flex-direction:column; gap:1px;
-  transition:transform .1s steps(2,end), box-shadow .1s steps(2,end)}
-.perk:hover{transform:translate(-1px,-1px); box-shadow:3px 3px 0 rgba(40,40,20,.2)}
-.pk-top{display:flex; align-items:center; justify-content:space-between; gap:6px}
-.pk-name{font-family:var(--pixel); font-size:15px; line-height:1.1; letter-spacing:.3px}
-.pk-rank{font-size:9px; letter-spacing:1px; white-space:nowrap}
+/* ---- 3D skill wheel (spin by moving the cursor) ---- */
+.skillwheel{position:relative; height:230px; perspective:1000px; margin:6px 0 0; --sw-r:300px; cursor:ew-resize}
+.sw-stage{position:absolute; inset:0; transform-style:preserve-3d; transform:rotateY(0deg); will-change:transform}
+.sw-card{position:absolute; left:50%; top:50%; width:188px; min-height:80px; box-sizing:border-box; backface-visibility:hidden;
+  border:2px solid var(--line-2); background:var(--panel); box-shadow:3px 3px 0 rgba(40,40,20,.18); padding:9px 12px}
+.sw-card .pk-name{font-family:var(--pixel); font-size:21px; line-height:1.04; display:block}
+.sw-card .pk-rank{font-size:12px; letter-spacing:2px; margin:4px 0 5px; white-space:nowrap}
+.sw-card .pk-tools{font-size:12px; color:var(--soft); line-height:1.2}
 .pk-rank .dim{opacity:.22}
-.pk-tools{font-size:10.5px; color:var(--soft); line-height:1.2}
-.perk.common{border-color:var(--line-2)} .perk.common .pk-name,.perk.common .pk-rank{color:var(--soft)}
-.perk.rare{border-color:var(--mp)} .perk.rare .pk-name,.perk.rare .pk-rank{color:var(--mp)}
-.perk.epic{border-color:#7a4fa3} .perk.epic .pk-name,.perk.epic .pk-rank{color:#7a4fa3}
-.perk.legendary{border-color:var(--gold); box-shadow:2px 2px 0 #a87b2c40, 0 0 10px #a87b2c30}
-.perk.legendary .pk-name,.perk.legendary .pk-rank{color:var(--gold)}
-@media(max-width:560px){ .perks{max-width:none; flex:1 1 100%} }
+.sw-card.common{border-color:var(--line-2)} .sw-card.common .pk-name,.sw-card.common .pk-rank{color:var(--soft)}
+.sw-card.rare{border-color:var(--mp)} .sw-card.rare .pk-name,.sw-card.rare .pk-rank{color:var(--mp)}
+.sw-card.epic{border-color:#7a4fa3} .sw-card.epic .pk-name,.sw-card.epic .pk-rank{color:#7a4fa3}
+.sw-card.legendary{border-color:var(--gold); box-shadow:3px 3px 0 #a87b2c40, 0 0 16px #a87b2c45}
+.sw-card.legendary .pk-name,.sw-card.legendary .pk-rank{color:var(--gold)}
+.sw-hint{text-align:center; font-family:var(--pixel); font-size:13px; color:var(--soft); margin-top:6px}
+.skillwheel.flat{height:auto; perspective:none; cursor:auto}
+.skillwheel.flat .sw-stage{position:static; transform:none; display:flex; flex-wrap:wrap; gap:8px; justify-content:center}
+.skillwheel.flat .sw-card{position:static; transform:none !important; backface-visibility:visible; width:210px}
+@media(prefers-reduced-motion:reduce){
+  .skillwheel{height:auto; perspective:none; cursor:auto}
+  .skillwheel .sw-stage{position:static; transform:none !important; display:flex; flex-wrap:wrap; gap:8px; justify-content:center}
+  .skillwheel .sw-card{position:static; transform:none !important; backface-visibility:visible; width:210px}
+}
 .hexradar{width:100%; max-width:300px; height:auto; overflow:visible}
 .hx-grid{fill:none; stroke:var(--line); stroke-width:1; opacity:.7}
 .hx-axis{stroke:var(--line); stroke-width:1; opacity:.45}

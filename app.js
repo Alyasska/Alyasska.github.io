@@ -72,27 +72,56 @@
     const poly = S.map((s, i) => ptS(s.val, i)).join(" ");
     const dots = S.map((s, i) => { const [x, y] = pt(s.val, i); return `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="3" class="hx-dot"/>`; }).join("");
     const labels = S.map((s, i) => { const [x, y] = pt(11.8, i); return `<text x="${x.toFixed(1)}" y="${(y - 1).toFixed(1)}" class="hx-label">${esc(s.key)}</text><text x="${x.toFixed(1)}" y="${(y + 11).toFixed(1)}" class="hx-num">${s.val}</text>`; }).join("");
-    const rankStars = (r) => `${"★".repeat(r)}<span class="dim">${"★".repeat(5 - r)}</span>`;
-    const skill = (p) => `<li class="perk ${esc(p.tier)}" title="${esc(p.name)} — ${esc(p.tools)}">
-          <div class="pk-top"><span class="pk-name">${esc(p.icon)} ${esc(p.name)}</span><span class="pk-rank">${rankStars(p.rank)}</span></div>
-          <div class="pk-tools">⚒ ${esc(p.tools)}</div></li>`;
-    const perkCol = (side) => `<ul class="perks">${(C.perks || []).filter(p => p.side === side).map(skill).join("")}</ul>`;
     return `
       <div class="panel">
-        <div class="h2">Stats &amp; Skills</div>
-        <div class="hx-row">
-          ${perkCol("hard")}
-          <div class="hx-wrap">
-            <svg viewBox="0 0 260 250" class="hexradar" role="img" aria-label="stats hexagon">
-              ${grid}${axes}<polygon points="${poly}" class="hx-fill"/>${dots}${labels}
-            </svg>
-          </div>
-          ${perkCol("soft")}
+        <div class="h2">Stats</div>
+        <div class="hx-wrap">
+          <svg viewBox="0 0 260 250" class="hexradar" role="img" aria-label="stats hexagon">
+            ${grid}${axes}<polygon points="${poly}" class="hx-fill"/>${dots}${labels}
+          </svg>
         </div>
         <ul class="hx-legend">${S.map(s => `<li><b>${esc(s.key)}</b><span>${esc(s.label)}</span><i>${esc(s.note)}</i></li>`).join("")}</ul>
       </div>`;
   };
   function animateStats() {}   /* (stats are an SVG hexagon now; CSS handles the reveal) */
+
+  /* ---------- 3D skill wheel (spin by moving the cursor) ---------- */
+  const rankStars = (r) => `${"★".repeat(r)}<span class="dim">${"★".repeat(5 - r)}</span>`;
+  const skillWheel = () => {
+    const P = C.perks || [], n = P.length || 1;
+    const cards = P.map((p, i) => `
+        <div class="sw-card ${esc(p.tier)}" style="transform:translate(-50%,-50%) rotateY(${(i * 360 / n).toFixed(2)}deg) translateZ(var(--sw-r))">
+          <span class="pk-name">${esc(p.icon)} ${esc(p.name)}</span>
+          <div class="pk-rank">${rankStars(p.rank)}</div>
+          <div class="pk-tools">⚒ ${esc(p.tools)}</div>
+        </div>`).join("");
+    return `
+      <div class="panel">
+        <div class="h2">Skills</div>
+        <div class="skillwheel" id="skillWheel" style="--sw-n:${n}">
+          <div class="sw-stage" id="swStage">${cards}</div>
+        </div>
+        <div class="sw-hint">↔ move your cursor over the wheel to spin</div>
+      </div>`;
+  };
+  function initWheel() {
+    const wheel = $("skillWheel"), stage = $("swStage");
+    if (!wheel || !stage || wheel._init) return;
+    wheel._init = true;
+    const reduce = typeof matchMedia !== "undefined" && matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduce) { wheel.classList.add("flat"); return; }
+    let angle = 0, vel = 0.18, target = 0.18;
+    wheel.addEventListener("mousemove", (e) => {
+      const r = wheel.getBoundingClientRect();
+      target = ((e.clientX - r.left) / r.width - 0.5) * 7;   // cursor X → spin speed/direction
+    }, { passive: true });
+    wheel.addEventListener("mouseleave", () => { target = 0.18; });   // gentle auto-drift
+    (function loop() {
+      vel += (target - vel) * 0.08; angle += vel;
+      stage.style.transform = `rotateY(${angle.toFixed(2)}deg)`;
+      requestAnimationFrame(loop);
+    })();
+  }
 
   /* ---------- panels ---------- */
   const sidebar = () => `
@@ -118,6 +147,7 @@
       <div>
         <div class="panel"><div class="h2">about me</div><div class="codex" id="aboutCodex">${esc(C.codex)}</div></div>
         ${statHexagon()}
+        ${skillWheel()}
       </div>
     </div>`;
 
@@ -201,7 +231,7 @@
       $("panel-" + t.id).toggleAttribute("hidden", t.id !== id);
     });
     $("main").scrollTop = 0;
-    if (id === "character") { animateStats(); typeAbout(); }
+    if (id === "character") { animateStats(); typeAbout(); initWheel(); }
     history.replaceState(null, "", "#" + id);
   }
   $("nav").addEventListener("click", e => { const b = e.target.closest(".tab"); if (b) select(b.id.replace("tab-", "")); });
@@ -239,7 +269,7 @@
   mountAvatar($("avatarFrame"));
   const fromHash = location.hash.replace("#", "");
   if (TABS.some(t => t.id === fromHash) && fromHash !== "character") select(fromHash);
-  else { requestAnimationFrame(animateStats); typeAbout(); }
+  else { requestAnimationFrame(animateStats); typeAbout(); initWheel(); }
 
   /* animated ASCII island background lives in mapbg.js */
 })();

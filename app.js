@@ -83,49 +83,26 @@
               ${grid}${axes}<polygon points="${poly}" class="hx-fill"/>${dots}${labels}${hits}
             </svg>
           </div>
-          ${skillWheelMarkup()}
+          ${skillGridMarkup()}
         </div>
-        <div class="sw-hint">↕ spin the wheel with your cursor · hover a stat for its meaning</div>
+        <div class="sw-hint">hover a stat to see what it means</div>
       </div>`;
   };
   function animateStats() {}   /* (stats are an SVG hexagon now; CSS handles the reveal) */
 
-  /* ---------- 3D skill wheel (spin by moving the cursor) ---------- */
+  /* ---------- skill grid (every skill readable at a glance) ---------- */
   const rankStars = (r) => `${"★".repeat(r)}<span class="dim">${"★".repeat(5 - r)}</span>`;
-  const skillWheelMarkup = () => {
-    const P = C.perks || [], n = P.length || 1;
+  const skillGridMarkup = () => {
+    const P = C.perks || [];
     const cards = P.map((p, i) => `
-          <div class="sw-card ${esc(p.tier)}" style="transform:translate(-50%,-50%) rotateX(${(i * 360 / n).toFixed(2)}deg) translateZ(var(--sw-r))">
+          <div class="sw-card ${esc(p.tier)}" style="--d:${i * 45}ms">
             <span class="pk-name">${esc(p.icon)} ${esc(p.name)}</span>
             <div class="pk-rank">${rankStars(p.rank)}</div>
             <div class="pk-tools">⚒ ${esc(p.tools)}</div>
           </div>`).join("");
-    return `<div class="skillwheel" id="skillWheel" style="--sw-n:${n}"><div class="sw-stage" id="swStage">${cards}</div></div>`;
+    return `<div class="skillgrid" id="skillGrid">${cards}</div>`;
   };
-  function initWheel() {
-    const wheel = $("skillWheel"), stage = $("swStage");
-    if (!wheel || !stage || wheel._init) return;
-    wheel._init = true;
-    const reduce = typeof matchMedia !== "undefined" && matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduce) { wheel.classList.add("flat"); return; }
-    const cards = stage.querySelectorAll ? Array.prototype.slice.call(stage.querySelectorAll(".sw-card")) : [];
-    const step = 360 / (cards.length || 1);
-    let angle = 0, vel = -0.18, target = -0.18;
-    wheel.addEventListener("mousemove", (e) => {
-      const r = wheel.getBoundingClientRect();
-      target = ((e.clientY - r.top) / r.height - 0.5) * 6.5;   // cursor Y → spin (vertical wheel)
-    }, { passive: true });
-    wheel.addEventListener("mouseleave", () => { target = -0.18; });   // gentle auto-drift
-    (function loop() {
-      vel += (target - vel) * 0.08; angle += vel;
-      stage.style.transform = `rotateX(${angle.toFixed(2)}deg)`;
-      for (let i = 0; i < cards.length; i++) {            // depth fade — sells the 3D
-        const c = Math.cos((i * step + angle) * Math.PI / 180);
-        cards[i].style.opacity = c > 0.02 ? (0.16 + 0.84 * c).toFixed(2) : "0";
-      }
-      requestAnimationFrame(loop);
-    })();
-  }
+  function initWheel() { /* grid is static CSS now — no JS needed */ }
 
   function initStatPop() {
     const pop = $("statPop");

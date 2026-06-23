@@ -196,7 +196,7 @@ section[hidden]{display:none}
 .xp-num{font-family:var(--pixel); font-size:14px; color:var(--soft); font-variant-numeric:tabular-nums; white-space:nowrap}
 
 /* ---- stat hexagon (radar) ---- */
-.stats-row{display:flex; align-items:center; justify-content:center; gap:16px; flex-wrap:wrap}
+.stats-row{display:flex; align-items:flex-start; justify-content:center; gap:18px; flex-wrap:wrap}
 .hx-wrap{position:relative; flex:0 0 auto; display:flex; justify-content:center; padding:6px 0 2px}
 .hx-hit{fill:#0000; cursor:help; pointer-events:all}
 /* stat pop-up — RPG dialogue box */
@@ -208,11 +208,15 @@ section[hidden]{display:none}
 .statpop b .sp-v{color:var(--paper)}
 .statpop::after{content:"▼"; position:absolute; left:50%; bottom:-13px; transform:translateX(-50%); color:var(--ink); font-size:15px; line-height:1}
 /* ---- 3D skill wheel (spin by moving the cursor) ---- */
-.skillwheel{position:relative; flex:0 0 auto; width:200px; height:300px; perspective:1250px; --sw-r:170px; cursor:ns-resize; margin:0}
-.sw-stage{position:absolute; inset:0; transform-style:preserve-3d; transform:rotateY(0deg); will-change:transform}
-.sw-card{position:absolute; left:50%; top:50%; width:152px; box-sizing:border-box; backface-visibility:hidden;
-  border:2px solid var(--line-2); background:var(--panel); box-shadow:2px 2px 0 rgba(40,40,20,.16); padding:6px 9px}
-.sw-card .pk-name{font-family:var(--pixel); font-size:16px; line-height:1.05; display:block}
+.skillgrid{flex:1 1 300px; min-width:0; display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr));
+  gap:8px; align-content:start}
+.sw-card{box-sizing:border-box; border:2px solid var(--line-2); background:var(--panel);
+  box-shadow:2px 2px 0 rgba(40,40,20,.16); padding:7px 9px 8px;
+  transition:transform .12s ease, box-shadow .12s ease;
+  animation:swpop .4s cubic-bezier(.2,.9,.2,1) both; animation-delay:var(--d,0ms)}
+.sw-card:hover{transform:translate(-1px,-2px); box-shadow:4px 5px 0 rgba(40,40,20,.20)}
+@keyframes swpop{from{opacity:0; transform:translateY(6px)} to{opacity:1; transform:none}}
+.sw-card .pk-name{font-family:var(--pixel); font-size:13px; line-height:1.25; display:block}
 .sw-card .pk-rank{font-size:10px; letter-spacing:1.5px; margin:3px 0; white-space:nowrap}
 .sw-card .pk-tools{font-size:10.5px; color:var(--soft); line-height:1.2}
 .pk-rank .dim{opacity:.22}
@@ -222,14 +226,8 @@ section[hidden]{display:none}
 .sw-card.legendary{border-color:var(--gold); box-shadow:3px 3px 0 #a87b2c40, 0 0 16px #a87b2c45}
 .sw-card.legendary .pk-name,.sw-card.legendary .pk-rank{color:var(--gold)}
 .sw-hint{text-align:center; font-family:var(--pixel); font-size:13px; color:var(--soft); margin-top:6px}
-.skillwheel.flat{height:auto; perspective:none; cursor:auto}
-.skillwheel.flat .sw-stage{position:static; transform:none; display:flex; flex-wrap:wrap; gap:8px; justify-content:center}
-.skillwheel.flat .sw-card{position:static; transform:none !important; backface-visibility:visible; width:210px}
-@media(prefers-reduced-motion:reduce){
-  .skillwheel{height:auto; perspective:none; cursor:auto}
-  .skillwheel .sw-stage{position:static; transform:none !important; display:flex; flex-wrap:wrap; gap:8px; justify-content:center}
-  .skillwheel .sw-card{position:static; transform:none !important; backface-visibility:visible; width:210px}
-}
+@media(max-width:560px){.skillgrid{grid-template-columns:repeat(auto-fill,minmax(132px,1fr))}}
+@media(prefers-reduced-motion:reduce){.sw-card{animation:none}}
 .hexradar{width:100%; max-width:330px; height:auto; overflow:visible}
 .hx-grid{fill:none; stroke:var(--line); stroke-width:1; opacity:.7}
 .hx-axis{stroke:var(--line); stroke-width:1; opacity:.45}

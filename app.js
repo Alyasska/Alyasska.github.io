@@ -175,16 +175,12 @@
       </div>
     </div>`;
 
-  const ASCII_ART = String.raw`      /\
-     /  \
-    / /\ \
-   / /  \ \
-  /_/____\_\
-  \ \    / /
-   \ \  / /
-    \ \/ /
-     \  /
-      \/`;
+  const ASCII_ART = [
+    "      |\\      _,,,---,,_",
+    "ZZZzz /,`.-'`'    -.  ;-;;,_",
+    "     |,4-  ) )-,_. ,\\ (  `'-'",
+    "    '---''(_/--'  `-'\\_)",
+  ].join("\n");
 
   const character = () => `
     <div class="grid">
@@ -194,7 +190,7 @@
           <div class="h2">about me</div>
           <div class="about-row">
             <div class="codex" id="aboutCodex">${esc(C.codex)}</div>
-            <pre class="ascii-art" aria-hidden="true">${ASCII_ART}</pre>
+            <div class="cat-wrap" aria-hidden="true"><span class="zzz z1">z</span><span class="zzz z2">z</span><pre class="ascii-art cat">${ASCII_ART}</pre></div>
           </div>
         </div>
         ${statHexagon()}

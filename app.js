@@ -21,12 +21,12 @@
     <div class="tag-class">${esc(C.class)}</div>
     <h1>${esc(C.name)} <span class="lvl">· Lv ${C.level}</span></h1>
     <div class="bars">
-      <div class="xp" title="HP — restored by: plov, sleep, a free weekend">
+      <div class="xp" title="HP, restored by plov, sleep, a free weekend">
         <span class="xp-cap hp">HP</span>
         <div class="xp-bar hp"><i style="width:90%"></i></div>
         <span class="xp-num">9 / 10</span>
       </div>
-      <div class="xp" title="MP — spent on: deep work, worldbuilding, late-night ideas">
+      <div class="xp" title="MP, spent on deep work, worldbuilding, late-night ideas">
         <span class="xp-cap mp">MP</span>
         <div class="xp-bar mp"><i style="width:75%"></i></div>
         <span class="xp-num">15 / 20</span>
@@ -37,7 +37,7 @@
         <span class="xp-num">day ${ageDay}/${ageDays} · ${xpPct}% to Lv ${C.level + 1}</span>
       </div>
     </div>
-    <p class="tagline">${esc(C.title)} — “${esc(C.tagline)}”</p>
+    <p class="tagline">${esc(C.title)}: “${esc(C.tagline)}”</p>
     <div class="meta">
       <span>📍 ${esc(C.origin)}</span>
       <a href="mailto:${esc(C.contact.email)}">✉ ${esc(C.contact.email)}</a>
@@ -72,7 +72,7 @@
     const poly = S.map((s, i) => ptS(s.val, i)).join(" ");
     const dots = S.map((s, i) => { const [x, y] = pt(s.val, i); return `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="3" class="hx-dot"/>`; }).join("");
     const labels = S.map((s, i) => { const [x, y] = pt(11.8, i); return `<text x="${x.toFixed(1)}" y="${(y - 1).toFixed(1)}" class="hx-label">${esc(s.key)}</text><text x="${x.toFixed(1)}" y="${(y + 11).toFixed(1)}" class="hx-num">${s.val}</text>`; }).join("");
-    const hits = S.map((s, i) => { const [x, y] = pt(10.5, i); return `<circle class="hx-hit" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="22" data-l="${esc(s.label)}" data-v="${s.val}" data-n="${esc(s.note)}"><title>${esc(s.label)} — ${esc(s.note)}</title></circle>`; }).join("");
+    const hits = S.map((s, i) => { const [x, y] = pt(10.5, i); return `<circle class="hx-hit" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="22" data-l="${esc(s.label)}" data-v="${s.val}" data-n="${esc(s.note)}"><title>${esc(s.label)}: ${esc(s.note)}</title></circle>`; }).join("");
     return `
       <div class="panel">
         <div class="h2">Stats &amp; Skills</div>
@@ -85,7 +85,7 @@
           </div>
           ${skillGridMarkup()}
         </div>
-        <div class="sw-hint">hover a stat to see what it means</div>
+        <div class="sw-hint">hover a stat or skill to see what it means</div>
       </div>`;
   };
   function animateStats() {}   /* (stats are an SVG hexagon now; CSS handles the reveal) */
@@ -95,12 +95,11 @@
   const skillGridMarkup = () => {
     const P = C.perks || [];
     const cards = P.map((p, i) => `
-          <div class="sw-card ${esc(p.tier)}" style="--d:${i * 45}ms">
+          <div class="sw-card ${esc(p.tier)}" style="--d:${i * 45}ms" data-name="${esc((p.icon ? p.icon + " " : "") + p.name)}" data-rank="${p.rank}" data-note="${esc(p.note || "")}" data-tools="${esc(p.tools || "")}">
             <span class="pk-name">${esc(p.icon)} ${esc(p.name)}</span>
             <div class="pk-rank">${rankStars(p.rank)}</div>
-            <div class="pk-tools">⚒ ${esc(p.tools)}</div>
           </div>`).join("");
-    return `<div class="skillgrid" id="skillGrid">${cards}</div>`;
+    return `<div class="skillgrid" id="skillGrid"><div class="statpop" id="skillPop" hidden></div>${cards}</div>`;
   };
   function initWheel() { /* grid is static CSS now — no JS needed */ }
 
@@ -122,6 +121,42 @@
     document.addEventListener("mouseout", (e) => { if (e.target.closest && e.target.closest(".hx-hit")) pop.hidden = true; });
   }
 
+  /* ---------- skill popup (same box as the stat popup) ---------- */
+  function initSkillPop() {
+    const pop = $("skillPop");
+    if (!pop || pop._init) return;
+    pop._init = true;
+    const wrap = pop.parentElement;
+    document.addEventListener("mouseover", (e) => {
+      const card = e.target.closest && e.target.closest(".sw-card");
+      if (!card || !wrap || !wrap.contains(card)) return;
+      const d = card.dataset;
+      pop.innerHTML = `<b>${esc(d.name)} <span class="sp-v">${rankStars(+d.rank)}</span></b>`
+        + (d.note ? `<span>${esc(d.note)}</span>` : "")
+        + (d.tools ? `<span class="sp-tools">⚒ ${esc(d.tools)}</span>` : "");
+      const cr = card.getBoundingClientRect(), wr = wrap.getBoundingClientRect();
+      pop.style.left = (cr.left - wr.left + cr.width / 2) + "px";
+      pop.style.top = (cr.top - wr.top) + "px";
+      pop.hidden = false;
+    });
+    document.addEventListener("mouseout", (e) => { if (e.target.closest && e.target.closest(".sw-card")) pop.hidden = true; });
+  }
+
+  /* ---------- contact form (static site: opens a prefilled email) ---------- */
+  function initContactForm() {
+    const f = $("contactForm");
+    if (!f || f._init) return;
+    f._init = true;
+    f.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const name = (f.from.value || "").trim(), email = (f.email.value || "").trim(), msg = (f.msg.value || "").trim();
+      const subject = "Hello from your site" + (name ? (": " + name) : "");
+      const sig = [name, email].filter(Boolean).join(", ");
+      const body = msg + (sig ? ("\n\nfrom: " + sig) : "");
+      window.location.href = "mailto:" + C.contact.email + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
+    });
+  }
+
   /* ---------- panels ---------- */
   const sidebar = () => `
     <div>
@@ -136,15 +171,32 @@
       </div>
       <div class="panel">
         <div class="h2">Languages</div>
-        <ul class="id-list">${C.languages.map(l => { const [a, b] = l.split(" — "); return `<li><span>${esc(a)}</span><span class="k">${esc(b || "")}</span></li>`; }).join("")}</ul>
+        <ul class="id-list">${C.languages.map(l => { const [a, b] = l.split(": "); return `<li><span>${esc(a)}</span><span class="k">${esc(b || "")}</span></li>`; }).join("")}</ul>
       </div>
     </div>`;
+
+  const ASCII_ART = String.raw`      /\
+     /  \
+    / /\ \
+   / /  \ \
+  /_/____\_\
+  \ \    / /
+   \ \  / /
+    \ \/ /
+     \  /
+      \/`;
 
   const character = () => `
     <div class="grid">
       ${sidebar()}
       <div class="char-main">
-        <div class="panel"><div class="h2">about me</div><div class="codex" id="aboutCodex">${esc(C.codex)}</div></div>
+        <div class="panel about-panel">
+          <div class="h2">about me</div>
+          <div class="about-row">
+            <div class="codex" id="aboutCodex">${esc(C.codex)}</div>
+            <pre class="ascii-art" aria-hidden="true">${ASCII_ART}</pre>
+          </div>
+        </div>
         ${statHexagon()}
       </div>
     </div>`;
@@ -160,18 +212,18 @@
         </div>
       </div>
       <ul class="log">${q.log.map(x => `<li>${esc(x)}</li>`).join("")}</ul>
-      ${q.reward ? `<div class="reward">reward — <b>${esc(q.reward)}</b></div>` : ""}
+      ${q.reward ? `<div class="reward">reward: <b>${esc(q.reward)}</b></div>` : ""}
       ${q.photos && q.photos.length ? `<div class="evidence">${q.photos.map(s => `<img src="${esc(s)}" alt="evidence" loading="lazy">`).join("")}</div>` : ""}
     </div>`;
 
   const quests = () => `
-    <div class="h2">Quest Log — contracts</div>
+    <div class="h2">Quest Log: contracts</div>
     <div class="q-grid">${C.quests.map(questCard).join("")}</div>
-    <div class="h2" style="margin-top:16px">Trials — tournaments &amp; hackathons</div>
+    <div class="h2" style="margin-top:16px">Trials: tournaments &amp; hackathons</div>
     <div class="q-grid">${C.trials.map(questCard).join("")}</div>`;
 
   const pets = () => `
-    <div class="h2">Pets — pet projects 🐾</div>
+    <div class="h2">Pets: pet projects 🐾</div>
     <div class="pets">${C.pets.map(p => `
       <div class="pet">
         <span class="lvl-chip">Lv ${p.lvl}</span>
@@ -183,7 +235,7 @@
       </div>`).join("")}</div>`;
 
   const guilds = () => `
-    <div class="h2">Allegiances — guilds &amp; factions</div>
+    <div class="h2">Allegiances: guilds &amp; factions</div>
     ${C.guilds.map(g => `
       <div class="card">
         <div class="row">
@@ -197,16 +249,35 @@
       </div>`).join("")}`;
 
   const codex = () => `
-    <div class="grid">
-      <div class="panel"><div class="h2">Achievements</div>
-        <ul class="ach">${C.achievements.map(a => `<li>${esc(a)}</li>`).join("")}</ul>
+    <div class="codex-grid">
+      <div class="panel contact-panel">
+        <div class="h2">Get in touch</div>
+        <p class="ct-intro">Want to build something together, or just say hi? Leave a message. I read everything, and I write back.</p>
+        <form id="contactForm" class="contact-form" novalidate>
+          <label>your name<input type="text" name="from" autocomplete="name" placeholder="who's writing?"></label>
+          <label>your email<input type="email" name="email" autocomplete="email" placeholder="so I can reply"></label>
+          <label>message<textarea name="msg" rows="4" placeholder="say anything"></textarea></label>
+          <button type="submit" class="send-btn">▶ send message</button>
+          <span class="ct-note">opens your email app, already addressed to me</span>
+        </form>
       </div>
-      <div class="panel"><div class="h2">Contact</div>
-        <ul class="id-list">
-          <li><span class="k">email</span><a href="mailto:${esc(C.contact.email)}">${esc(C.contact.email)}</a></li>
-          <li><span class="k">github</span><a href="${esc(C.contact.github)}" target="_blank" rel="noopener">/Alyasska</a></li>
-          <li><span class="k">where</span><span>${esc(C.contact.location)}</span></li>
-        </ul>
+      <div class="codex-side">
+        <div class="panel">
+          <div class="h2">Currently</div>
+          <p class="now">Wrapping up my Electrical &amp; Computer Engineering degree at Nazarbayev University. Open to remote work in ML and RL environments. I'm at UTC+5, so European hours overlap easily and US evenings work fine. Always happy to talk simulations, worldbuilding, or board games.</p>
+        </div>
+        <div class="panel">
+          <div class="h2">Find me</div>
+          <ul class="id-list">
+            <li><span class="k">email</span><a href="mailto:${esc(C.contact.email)}">${esc(C.contact.email)}</a></li>
+            <li><span class="k">github</span><a href="${esc(C.contact.github)}" target="_blank" rel="noopener">/Alyasska</a></li>
+            <li><span class="k">where</span><span>${esc(C.contact.location)}</span></li>
+          </ul>
+        </div>
+        <div class="panel">
+          <div class="h2">Achievements</div>
+          <ul class="ach">${C.achievements.map(a => `<li>${esc(a)}</li>`).join("")}</ul>
+        </div>
       </div>
     </div>`;
 
@@ -229,7 +300,7 @@
       $("panel-" + t.id).toggleAttribute("hidden", t.id !== id);
     });
     $("main").scrollTop = 0;
-    if (id === "character") { animateStats(); typeAbout(); initWheel(); initStatPop(); }
+    if (id === "character") { animateStats(); typeAbout(); initWheel(); initStatPop(); initSkillPop(); }
     history.replaceState(null, "", "#" + id);
   }
   $("nav").addEventListener("click", e => { const b = e.target.closest(".tab"); if (b) select(b.id.replace("tab-", "")); });
@@ -265,9 +336,10 @@
 
   /* ---------- init ---------- */
   mountAvatar($("avatarFrame"));
+  initStatPop(); initSkillPop(); initContactForm();
   const fromHash = location.hash.replace("#", "");
   if (TABS.some(t => t.id === fromHash) && fromHash !== "character") select(fromHash);
-  else { requestAnimationFrame(animateStats); typeAbout(); initWheel(); initStatPop(); }
+  else { requestAnimationFrame(animateStats); typeAbout(); initWheel(); }
 
   /* animated ASCII island background lives in mapbg.js */
 })();

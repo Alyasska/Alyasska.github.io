@@ -230,6 +230,7 @@ section[hidden]{display:none}
 .sw-card{cursor:help}
 /* skill popup tools line (matches the stat popup box) */
 .statpop .sp-tools{display:block; margin-top:5px; font-size:11px; color:#d6cfbc}
+.statpop .sp-v .dim{opacity:.3}   /* empty rank stars in the skill popup */
 
 /* ---- about-me row + ascii art ---- */
 .about-row{display:flex; gap:18px; align-items:center; justify-content:space-between}
@@ -237,12 +238,12 @@ section[hidden]{display:none}
 .cat-wrap{flex:0 0 auto; position:relative; margin:0 10px 0 0}
 .ascii-art{margin:0; font-family:var(--mono); font-size:11px; line-height:1.08;
   color:var(--accent); opacity:.62; white-space:pre; user-select:none}
-.ascii-art.cat{transform-origin:60% 85%; animation:catbreathe 3.6s ease-in-out infinite}
+.ascii-art.cat{font-size:13.5px; line-height:1.12; transform-origin:60% 85%; animation:catbreathe 3.6s ease-in-out infinite}
 @keyframes catbreathe{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-1px) scale(1.045)}}
-.zzz{position:absolute; left:46px; top:5px; font-family:var(--mono); font-weight:700;
+.zzz{position:absolute; left:58px; top:3px; font-family:var(--mono); font-weight:700;
   color:var(--accent); opacity:0; pointer-events:none; animation:zrise 3.2s ease-in-out infinite}
-.zzz.z1{font-size:13px; animation-delay:.2s}
-.zzz.z2{font-size:10px; left:52px; animation-delay:1.7s}
+.zzz.z1{font-size:14px; animation-delay:.2s}
+.zzz.z2{font-size:11px; left:66px; animation-delay:1.7s}
 @keyframes zrise{0%{opacity:0; transform:translate(0,0) rotate(0)}
   25%{opacity:.7} 100%{opacity:0; transform:translate(-12px,-24px) rotate(-12deg)}}
 @media(max-width:720px){.about-row{display:block} .cat-wrap{display:none}}

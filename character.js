@@ -16,6 +16,7 @@ const CHARACTER = {
   contact: {
     email: "lyasskar@gmail.com",
     github: "https://github.com/Alyasska",
+    linkedin: "https://www.linkedin.com/in/aliaskar-bekishev/",
     location: "Astana, Kazakhstan",
   },
 

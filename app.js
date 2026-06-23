@@ -42,6 +42,7 @@
       <span>📍 ${esc(C.origin)}</span>
       <a href="mailto:${esc(C.contact.email)}">✉ ${esc(C.contact.email)}</a>
       <a href="${esc(C.contact.github)}" target="_blank" rel="noopener">⌥ github.com/Alyasska</a>
+      <a href="${esc(C.contact.linkedin)}" target="_blank" rel="noopener">🔗 linkedin.com/in/aliaskar-bekishev</a>
     </div>`;
 
   /* ---------- avatar (fallback chain: cut → original → ascii) ---------- */
@@ -267,6 +268,7 @@
           <ul class="id-list">
             <li><span class="k">email</span><a href="mailto:${esc(C.contact.email)}">${esc(C.contact.email)}</a></li>
             <li><span class="k">github</span><a href="${esc(C.contact.github)}" target="_blank" rel="noopener">/Alyasska</a></li>
+            <li><span class="k">linkedin</span><a href="${esc(C.contact.linkedin)}" target="_blank" rel="noopener">/aliaskar-bekishev</a></li>
             <li><span class="k">where</span><span>${esc(C.contact.location)}</span></li>
           </ul>
         </div>

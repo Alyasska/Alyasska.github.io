@@ -6,10 +6,10 @@
    ============================================================ */
 const CHARACTER = {
   name: "Aliaskar Bekishev",
-  class: "ML & Systems Engineer",
+  class: "Web Designer & Engineer",
   title: "the Worldbuilder",
   level: 23,
-  tagline: "I build worlds for agents to act in, and the graders that tell real skill from luck.",
+  tagline: "I design interfaces, build them in code, and read the numbers they produce.",
   origin: "Astana, Kazakhstan",
   avatar: "assets/avatar.png",
   languages: ["Kazakh: native", "Russian: native", "English: C1", "Japanese: learning"],
@@ -21,9 +21,9 @@ const CHARACTER = {
   },
 
   codex:
-`Hi, I'm Aliaskar. I build things: simulations, little worlds in code, ML models, the odd national climate forecast at work. I care most about the systems underneath, the environment an agent acts in and the grader that decides whether it actually got better or just got lucky.
+`Hi, I'm Aliaskar. I design and build things for the web: the official site of Kazakhstan's climate centre (climate.kz), this character sheet you're reading, posters and identities for two university clubs where I ran PR. I do the whole loop myself, the Figma frame, the code, and the numbers afterwards.
 
-Lately that's pulled me toward reinforcement-learning environments, and how frontier models behave when you push them. The interesting part is where they cut a corner, game the reward, or report a win they never earned. Building the worlds that catch that is the most fun I've had in code.
+The engineering half of me is real too: ML, simulations, a national climate model at work. It means that when I design a landing page I can also measure whether it converts, not just feel it.
 
 This is just an easy way to show what I've been up to. Have a look around, no rush.`,
 
@@ -39,13 +39,14 @@ This is just an easy way to show what I've been up to. Have a look around, no ru
 
   // skills as RPG abilities (a tool is not a skill; tools just power each ability). острие leads the wheel.
   perks: [
+    { name: "Interface Smith",       icon: "❖", rank: 4, tier: "epic",      note: "I design interfaces and build them in code, typography to deploy.", tools: "Figma · HTML/CSS/JS · typography · grids", side: "hard" },
+    { name: "Poster Forge",          icon: "✎", rank: 4, tier: "rare",      note: "Posters, banners, and event identities that had to fill rooms.", tools: "Figma · Canva · Lunacy · Blender", side: "hard" },
     { name: "Environment Architect", icon: "⊟", rank: 4, tier: "epic",      note: "I design the world an agent acts in, and the rules it plays by.", tools: "RL envs · gym/PettingZoo · self-play", side: "hard" },
     { name: "Grader Smith",          icon: "✓", rank: 4, tier: "epic",      note: "I write the graders that decide pass or fail, and catch the lucky wins.", tools: "eval harnesses · Monte-Carlo · reward design", side: "hard" },
     { name: "Model Trainer",         icon: "⚙", rank: 4, tier: "rare",      note: "I train and fine-tune models, and actually read the curves.", tools: "PyTorch · scikit-learn · YOLOv8", side: "hard" },
     { name: "Systems & Infra",       icon: "◫", rank: 4, tier: "rare",      note: "I make things run the same way on any machine, not just mine.", tools: "Docker · Compose · Linux · reproducible builds", side: "hard" },
     { name: "Simulation Architect",  icon: "◈", rank: 4, tier: "epic",      note: "I build simulations from scratch and keep them reproducible.", tools: "Python · physical sims · procgen", side: "hard" },
     { name: "Signal Seer",           icon: "≈", rank: 3, tier: "rare",      note: "I pull clean signal out of genuinely noisy data.", tools: "DSP · adaptive filters · noisy data", side: "hard" },
-    { name: "Interface Smith",       icon: "❖", rank: 3, tier: "rare",      note: "I build the front end and data-viz people actually use.", tools: "JavaScript · deck.gl · web", side: "hard" },
     { name: "Dungeon Master",        icon: "⚄", rank: 5, tier: "legendary", note: "I run the table and design rules that stay balanced.", tools: "D&D · 150+ games · rules & balance design", side: "soft" },
     { name: "World Weaver",          icon: "✶", rank: 4, tier: "epic",      note: "I invent worlds: their lore, their maps, their history.", tools: "lore · procgen · maps", side: "soft" },
     { name: "Crowd Caller",          icon: "❂", rank: 4, tier: "rare",      note: "I rally people and run events at festival scale.", tools: "festivals 1000+ · PR", side: "soft" },
@@ -62,6 +63,7 @@ This is just an easy way to show what I've been up to. Have a look around, no ru
       photos: ["assets/photos/asplab-conference.jpg", "assets/photos/asplab-setup.jpg"] },
     { title: "Keeper of the National Ledger", giver: "Climate Change Coordination Centre", dates: "2026 - present", status: "ACTIVE", diff: 4, exp: 1200,
       log: [
+        "Designed and shipped the centre's official website, climate.kz: structure, layout, multilingual content, SEO.",
         "Built the first version of Kazakhstan's national greenhouse-gas forecast, a big multi-sector model (LEAP).",
         "Helped write part of the country's official climate report to the UN.",
         "Helped run a national expert workshop (guest lists, invites, all the logistics).",
@@ -94,6 +96,10 @@ This is just an easy way to show what I've been up to. Have a look around, no ru
 
   // pet projects = pets (the pun). острие flagships first.
   pets: [
+    { name: "climate.kz", species: "Ancient (production)", lvl: 9, sigil: "❂",
+      tags: ["web design", "production", "SEO"],
+      desc: "The official website of the Climate Change Coordination Centre, designed and built by me end to end: structure, layout, multilingual content, SEO. A real site for a real organization, live in production.",
+      link: "https://climate.kz" },
     { name: "the Forge", species: "Proving Ground", lvl: 8, sigil: "⊟",
       tags: ["RL env", "self-play", "evals"],
       desc: "A reinforcement-learning environment I built end to end: a world behind a narrow interface, a self-play loop that learns to win it, and a Monte-Carlo grader that scores thousands of seeded runs. The learned policy found an exploit my hand-written bots never used, exactly the corner-cutting good environments exist to catch.",
@@ -114,10 +120,6 @@ This is just an easy way to show what I've been up to. Have a look around, no ru
       tags: ["app", "full-stack"],
       desc: "A full app I'm genuinely proud of, one of my best builds.",
       link: "https://alyasska.github.io/root_app/" },
-    { name: "climate.kz", species: "Familiar", lvl: 5, sigil: "❂",
-      tags: ["web", "climate", "data-viz"],
-      desc: "A climate web project that makes climate data easier to read.",
-      link: "https://alyasska.github.io/climate.kz/" },
     { name: "world_building", species: "Sprite", lvl: 3, sigil: "✦",
       tags: ["TypeScript", "world-gen"],
       desc: "A small toolkit for building worlds.",

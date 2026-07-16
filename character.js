@@ -21,9 +21,9 @@ const CHARACTER = {
   },
 
   codex:
-`Hi, I'm Aliaskar. I design and build things for the web: the official site of Kazakhstan's climate centre (climate.kz), this character sheet you're reading, posters and identities for two university clubs where I ran PR. I do the whole loop myself, the Figma frame, the code, and the numbers afterwards.
+`Hi, I'm Aliaskar. I'm an engineer from Astana who likes making things you can actually open and touch: websites (climate.kz, this character sheet), simulations and little worlds in code, ML models, posters for two university clubs, the odd national climate forecast at work.
 
-The engineering half of me is real too: ML, simulations, a national climate model at work. It means that when I design a landing page I can also measure whether it converts, not just feel it.
+Two habits run through all of it. I like building the whole thing myself, from the first sketch to the shipped result. And I like checking it with numbers afterwards, whether it's a model, a landing page, or a game night poster.
 
 This is just an easy way to show what I've been up to. Have a look around, no rush.`,
 

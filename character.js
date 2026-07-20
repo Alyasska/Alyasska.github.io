@@ -46,6 +46,7 @@ This is just an easy way to show what I've been up to. Have a look around, no ru
     { name: "Model Trainer",         icon: "⚙", rank: 4, tier: "rare",      note: "I train and fine-tune models, and actually read the curves.", tools: "PyTorch · scikit-learn · YOLOv8", side: "hard" },
     { name: "Systems & Infra",       icon: "◫", rank: 4, tier: "rare",      note: "I make things run the same way on any machine, not just mine.", tools: "Docker · Compose · Linux · reproducible builds", side: "hard" },
     { name: "Simulation Architect",  icon: "◈", rank: 4, tier: "epic",      note: "I build simulations from scratch and keep them reproducible.", tools: "Python · physical sims · procgen", side: "hard" },
+    { name: "Circuit Wright",        icon: "⏦", rank: 4, tier: "epic",      note: "I take a device from schematic and board layout through firmware to a working bench.", tools: "Altium · KiCad · LTspice · STM32/AVR · motor drives", side: "hard" },
     { name: "Signal Seer",           icon: "≈", rank: 3, tier: "rare",      note: "I pull clean signal out of genuinely noisy data.", tools: "DSP · adaptive filters · noisy data", side: "hard" },
     { name: "Dungeon Master",        icon: "⚄", rank: 5, tier: "legendary", note: "I run the table and design rules that stay balanced.", tools: "D&D · 150+ games · rules & balance design", side: "soft" },
     { name: "World Weaver",          icon: "✶", rank: 4, tier: "epic",      note: "I invent worlds: their lore, their maps, their history.", tools: "lore · procgen · maps", side: "soft" },
@@ -54,7 +55,7 @@ This is just an easy way to show what I've been up to. Have a look around, no ru
 
   // work experience = quests (острие-relevant first)
   quests: [
-    { title: "Signals in the Noise", giver: "ASP-LAB, Nazarbayev University", dates: "2024 - present", status: "ACTIVE", diff: 4, exp: 900,
+    { title: "Signals in the Noise", giver: "ASP-LAB, Nazarbayev University", dates: "2023 - present", status: "ACTIVE", diff: 4, exp: 900,
       log: [
         "Research on pulling clean signals out of noisy data, from wearables to genomic signals, and built the ML that does it (PyTorch, scikit-learn).",
         "Containerized the lab's ML workflows as multi-service Docker / Compose setups, so experiments reproduce identically on any machine.",
@@ -69,7 +70,15 @@ This is just an easy way to show what I've been up to. Have a look around, no ru
         "Helped run a national expert workshop (guest lists, invites, all the logistics).",
       ], reward: "saw how big modeling decisions actually get made",
       photos: ["assets/photos/kcic-office.jpg", "assets/photos/kcic-conference.jpg"] },
-    { title: "The Simulation Contract", giver: "WSE LLP", dates: "2024", status: "COMPLETE", diff: 3, exp: 600,
+    { title: "The Iron Knee", giver: "Robotics for Rehabilitation, Nazarbayev University", dates: "2026", status: "COMPLETE", diff: 4, exp: 800,
+      log: [
+        "Built a powered knee rehabilitation exoskeleton with four teammates. I took the drive side: picking the motor and writing the control that actually moves the joint.",
+        "Sized the actuator from a torque budget. Gravity alone pulls on the knee with about 11 N·m for a 75 kg patient, and doubling that for safety set the requirement, which picked out a brushless CubeMars AK80-64.",
+        "Commissioned the drive on an ODrive controller: a velocity loop with a position loop on top, following a clinical 0 to 90 degree flexion path, with the encoder logged to prove the joint really tracked it.",
+        "Frame modelled in Fusion, printed in PLA, then assembled and wired up on the bench.",
+      ], reward: "the feeling of a control loop moving something real and heavy",
+      photos: ["assets/photos/exo-assembly.jpg", "assets/photos/exo-bench.jpg"] },
+    { title: "The Simulation Contract", giver: "WSE LLP", dates: "2024 - 2025", status: "COMPLETE", diff: 3, exp: 600,
       log: [
         "Modeled how electronic systems behave (control & signal), and simulated their failure modes.",
         "Dug into tricky problems and pitched fixes, with the trade-offs spelled out.",
@@ -167,6 +176,7 @@ This is just an easy way to show what I've been up to. Have a look around, no ru
   ],
 
   achievements: [
+    "Built a powered knee exoskeleton that follows a clinical rehab path: motor sizing, drive, and control",
     "Built a full RL environment from scratch: self-play + a Monte-Carlo grader (the Forge)",
     "Won a fully-funded master's at KAIST in Korea (the GKS scholarship)",
     "Top 10 at Higgsfield's hackathon (Kazakhstan's first AI unicorn)",

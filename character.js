@@ -1,15 +1,20 @@
 /* ============================================================
    character.js  ::  all the data. Chill, plain-language copy.
-   Positioning: ML & Systems engineer who builds RL environments + the graders
-   that score them. RPG frame kept; substance points at the острие.
+   Positioning (2026-07-20): a BUILDER who ships complete systems and checks them
+   with numbers. Deliberately NOT a single domain - he is not "the geo guy" or
+   "the RL guy" or "the web designer". The wheel leads with simulation / envs /
+   graders / models because that is the strongest evidence, and interface + circuit
+   + poster stay visible because the breadth is real and it is the point.
+   Serves: AI/eval roles, remote Python/data roles, sim & tooling roles, and
+   climate/geo roles - without claiming any of them as an identity.
    Style: no em dashes / en dashes anywhere (plain hyphens only).
    ============================================================ */
 const CHARACTER = {
   name: "Aliaskar Bekishev",
-  class: "Web Designer & Engineer",
+  class: "ML & Systems Engineer",
   title: "the Worldbuilder",
   level: 23,
-  tagline: "I design interfaces, build them in code, and read the numbers they produce.",
+  tagline: "I build things end to end - agent environments, ML models, simulations, real websites - and I check them with numbers.",
   origin: "Astana, Kazakhstan",
   avatar: "assets/avatar.png",
   languages: ["Kazakh: native", "Russian: native", "English: C1", "Japanese: learning"],
@@ -39,15 +44,16 @@ This is just an easy way to show what I've been up to. Have a look around, no ru
 
   // skills as RPG abilities (a tool is not a skill; tools just power each ability). острие leads the wheel.
   perks: [
-    { name: "Interface Smith",       icon: "❖", rank: 4, tier: "epic",      note: "I design interfaces and build them in code, typography to deploy.", tools: "Figma · HTML/CSS/JS · typography · grids", side: "hard" },
-    { name: "Poster Forge",          icon: "✎", rank: 4, tier: "rare",      note: "Posters, banners, and event identities that had to fill rooms.", tools: "Figma · Canva · Lunacy · Blender", side: "hard" },
+    { name: "Simulation Architect",  icon: "◈", rank: 4, tier: "epic",      note: "I build simulations from scratch and keep them reproducible.", tools: "Python · physical sims · procgen", side: "hard" },
     { name: "Environment Architect", icon: "⊟", rank: 4, tier: "epic",      note: "I design the world an agent acts in, and the rules it plays by.", tools: "RL envs · gym/PettingZoo · self-play", side: "hard" },
     { name: "Grader Smith",          icon: "✓", rank: 4, tier: "epic",      note: "I write the graders that decide pass or fail, and catch the lucky wins.", tools: "eval harnesses · Monte-Carlo · reward design", side: "hard" },
     { name: "Model Trainer",         icon: "⚙", rank: 4, tier: "rare",      note: "I train and fine-tune models, and actually read the curves.", tools: "PyTorch · scikit-learn · YOLOv8", side: "hard" },
     { name: "Systems & Infra",       icon: "◫", rank: 4, tier: "rare",      note: "I make things run the same way on any machine, not just mine.", tools: "Docker · Compose · Linux · reproducible builds", side: "hard" },
-    { name: "Simulation Architect",  icon: "◈", rank: 4, tier: "epic",      note: "I build simulations from scratch and keep them reproducible.", tools: "Python · physical sims · procgen", side: "hard" },
-    { name: "Circuit Wright",        icon: "⏦", rank: 4, tier: "epic",      note: "I take a device from schematic and board layout through firmware to a working bench.", tools: "Altium · KiCad · LTspice · STM32/AVR · motor drives", side: "hard" },
+    { name: "Pipeline Wright",       icon: "⇉", rank: 4, tier: "rare",      note: "I turn messy data into something a model or a map can actually use.", tools: "NumPy/Pandas · SQL · rasterio/GDAL · deck.gl", side: "hard" },
     { name: "Signal Seer",           icon: "≈", rank: 3, tier: "rare",      note: "I pull clean signal out of genuinely noisy data.", tools: "DSP · adaptive filters · noisy data", side: "hard" },
+    { name: "Interface Smith",       icon: "❖", rank: 4, tier: "epic",      note: "I design interfaces and build them in code, typography to deploy.", tools: "Figma · HTML/CSS/JS · typography · grids", side: "hard" },
+    { name: "Circuit Wright",        icon: "⏦", rank: 4, tier: "epic",      note: "I take a device from schematic and board layout through firmware to a working bench.", tools: "Altium · KiCad · LTspice · STM32/AVR · motor drives", side: "hard" },
+    { name: "Poster Forge",          icon: "✎", rank: 4, tier: "rare",      note: "Posters, banners, and event identities that had to fill rooms.", tools: "Figma · Canva · Lunacy · Blender", side: "hard" },
     { name: "Dungeon Master",        icon: "⚄", rank: 5, tier: "legendary", note: "I run the table and design rules that stay balanced.", tools: "D&D · 150+ games · rules & balance design", side: "soft" },
     { name: "World Weaver",          icon: "✶", rank: 4, tier: "epic",      note: "I invent worlds: their lore, their maps, their history.", tools: "lore · procgen · maps", side: "soft" },
     { name: "Crowd Caller",          icon: "❂", rank: 4, tier: "rare",      note: "I rally people and run events at festival scale.", tools: "festivals 1000+ · PR", side: "soft" },

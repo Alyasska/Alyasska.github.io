@@ -1,20 +1,17 @@
 /* ============================================================
    character.js  ::  all the data. Chill, plain-language copy.
-   Positioning (2026-07-20): a BUILDER who ships complete systems and checks them
-   with numbers. Deliberately NOT a single domain - he is not "the geo guy" or
-   "the RL guy" or "the web designer". The wheel leads with simulation / envs /
-   graders / models because that is the strongest evidence, and interface + circuit
-   + poster stay visible because the breadth is real and it is the point.
-   Serves: AI/eval roles, remote Python/data roles, sim & tooling roles, and
-   climate/geo roles - without claiming any of them as an identity.
+   Positioning (2026-09-30): PRODUCT & MARKETING ANALYST. Leads with the JobEscape
+   work (paid acquisition, A/B tests, churn, revenue monitoring), then Polymath
+   (LLM evals), then research. Games and worldbuilding stay as the personality.
+   Rules: no study years, no GPA, no "student" wording (he tells employers in person).
    Style: no em dashes / en dashes anywhere (plain hyphens only).
    ============================================================ */
 const CHARACTER = {
   name: "Aliaskar Bekishev",
-  class: "ML & Systems Engineer",
+  class: "Product & Marketing Analyst",
   title: "the Worldbuilder",
   level: 23,
-  tagline: "I build things end to end - agent environments, ML models, simulations, real websites - and I check them with numbers.",
+  tagline: "I find the reason behind the number - paid acquisition, A/B tests, churn and revenue for a US subscription app.",
   origin: "Astana, Kazakhstan",
   avatar: "assets/avatar.png",
   languages: ["Kazakh: native", "Russian: native", "English: C1", "Japanese: learning"],
@@ -26,49 +23,54 @@ const CHARACTER = {
   },
 
   codex:
-`Hi, I'm Aliaskar. I'm an engineer from Astana who likes making things you can actually open and touch: websites (climate.kz, this character sheet), simulations and little worlds in code, ML models, posters for two university clubs, the odd national climate forecast at work.
+`Hi, I'm Aliaskar. I'm a product and marketing analyst from Astana. Right now I work on JobEscape, a subscription app for the US market: paid acquisition, A/B tests, churn, and keeping an eye on revenue.
 
-Two habits run through all of it. I like building the whole thing myself, from the first sketch to the shipped result. And I like checking it with numbers afterwards, whether it's a model, a landing page, or a game night poster.
+My favourite part of the job is the moment a number stops making sense. Usually it's a broken metric, a failed payment, or a test that ended too early, and finding out which one it is feels a lot like solving a mystery.
 
-This is just an easy way to show what I've been up to. Have a look around, no rush.`,
+Outside of work I run tabletop games, design a board game of my own, and build little worlds in code. This page is just an easy way to show what I've been up to. Have a look around, no rush.`,
 
   // 6 stats, each note says in plain words what the stat means.
   stats: [
     { key: "STR", label: "Strength",     val: 8,  note: "raw power. I lift, and I cycle a lot" },
     { key: "DEX", label: "Dexterity",    val: 6,  note: "quick hands & sports" },
-    { key: "INT", label: "Intelligence", val: 8,  note: "ML, systems, and figuring hard things out" },
-    { key: "WIS", label: "Wisdom",       val: 9,  note: "reading data, models, and people" },
+    { key: "INT", label: "Intelligence", val: 8,  note: "statistics, ML, and figuring hard things out" },
+    { key: "WIS", label: "Wisdom",       val: 9,  note: "reading data, and the people behind it" },
     { key: "CHA", label: "Charisma",     val: 7,  note: "vibing with people & getting them together" },
     { key: "LCK", label: "Luck",         val: 10, note: "good things keep finding me" },
   ],
 
   // skills as RPG abilities (a tool is not a skill; tools just power each ability). острие leads the wheel.
   perks: [
-    { name: "Simulation Architect",  icon: "◈", rank: 4, tier: "epic",      note: "I build simulations from scratch and keep them reproducible.", tools: "Python · physical sims · procgen", side: "hard" },
-    { name: "Environment Architect", icon: "⊟", rank: 4, tier: "epic",      note: "I design the world an agent acts in, and the rules it plays by.", tools: "RL envs · gym/PettingZoo · self-play", side: "hard" },
-    { name: "Grader Smith",          icon: "✓", rank: 4, tier: "epic",      note: "I write the graders that decide pass or fail, and catch the lucky wins.", tools: "eval harnesses · Monte-Carlo · reward design", side: "hard" },
-    { name: "Model Trainer",         icon: "⚙", rank: 4, tier: "rare",      note: "I train and fine-tune models, and actually read the curves.", tools: "PyTorch · scikit-learn · YOLOv8", side: "hard" },
-    { name: "Systems & Infra",       icon: "◫", rank: 4, tier: "rare",      note: "I make things run the same way on any machine, not just mine.", tools: "Docker · Compose · Linux · reproducible builds", side: "hard" },
-    { name: "Pipeline Wright",       icon: "⇉", rank: 4, tier: "rare",      note: "I turn messy data into something a model or a map can actually use.", tools: "NumPy/Pandas · SQL · rasterio/GDAL · deck.gl", side: "hard" },
-    { name: "Signal Seer",           icon: "≈", rank: 3, tier: "rare",      note: "I pull clean signal out of genuinely noisy data.", tools: "DSP · adaptive filters · noisy data", side: "hard" },
-    { name: "Interface Smith",       icon: "❖", rank: 4, tier: "epic",      note: "I design interfaces and build them in code, typography to deploy.", tools: "Figma · HTML/CSS/JS · typography · grids", side: "hard" },
-    { name: "Circuit Wright",        icon: "⏦", rank: 4, tier: "epic",      note: "I take a device from schematic and board layout through firmware to a working bench.", tools: "Altium · KiCad · LTspice · STM32/AVR · motor drives", side: "hard" },
-    { name: "Poster Forge",          icon: "✎", rank: 4, tier: "rare",      note: "Posters, banners, and event identities that had to fill rooms.", tools: "Figma · Canva · Lunacy · Blender", side: "hard" },
-    { name: "Dungeon Master",        icon: "⚄", rank: 5, tier: "legendary", note: "I run the table and design rules that stay balanced.", tools: "D&D · 150+ games · rules & balance design", side: "soft" },
-    { name: "World Weaver",          icon: "✶", rank: 4, tier: "epic",      note: "I invent worlds: their lore, their maps, their history.", tools: "lore · procgen · maps", side: "soft" },
-    { name: "Crowd Caller",          icon: "❂", rank: 4, tier: "rare",      note: "I rally people and run events at festival scale.", tools: "festivals 1000+ · PR", side: "soft" },
+    { name: "Metric Hunter",        icon: "⌖", rank: 4, tier: "epic",      note: "I find out why a number moved, and whether the move is real.", tools: "A/B tests · cohorts · funnels · statistics", side: "hard" },
+    { name: "Revenue Sentinel",     icon: "◉", rank: 4, tier: "epic",      note: "I watch the money and catch the drops nobody reported.", tools: "SQL · ClickHouse · anomaly detection", side: "hard" },
+    { name: "Creative Auditor",     icon: "◎", rank: 4, tier: "epic",      note: "I check which ads really pay back, and whether the report is telling the truth.", tools: "ROI · ROAS · paid acquisition", side: "hard" },
+    { name: "Churn Reader",         icon: "↯", rank: 4, tier: "rare",      note: "I split churn into its real causes, not the obvious one.", tools: "churn drivers · retention · LTV", side: "hard" },
+    { name: "Grader Smith",         icon: "✓", rank: 4, tier: "epic",      note: "I write the graders that decide pass or fail, and catch the lucky wins.", tools: "LLM evals · reward hacking · Monte-Carlo", side: "hard" },
+    { name: "Automaton Wright",     icon: "⇉", rank: 4, tier: "rare",      note: "I turn piles of messy text into topics and summaries with LLMs.", tools: "LLM pipelines · HuggingFace · agents", side: "hard" },
+    { name: "Model Trainer",        icon: "⚙", rank: 4, tier: "rare",      note: "I train models and actually read the curves.", tools: "PyTorch · scikit-learn · Python", side: "hard" },
+    { name: "Simulation Architect", icon: "◈", rank: 4, tier: "rare",      note: "I build simulations from scratch and keep them reproducible.", tools: "Python · procgen · geospatial", side: "hard" },
+    { name: "Interface Smith",      icon: "❖", rank: 4, tier: "rare",      note: "I design interfaces and build them in code, typography to deploy.", tools: "Figma · HTML/CSS/JS · typography", side: "hard" },
+    { name: "Dungeon Master",       icon: "⚄", rank: 5, tier: "legendary", note: "I run the table and design rules that stay balanced.", tools: "D&D · 150+ games · rules & balance design", side: "soft" },
+    { name: "World Weaver",         icon: "✶", rank: 4, tier: "epic",      note: "I invent worlds: their lore, their maps, their history.", tools: "lore · procgen · maps", side: "soft" },
+    { name: "Crowd Caller",         icon: "❂", rank: 4, tier: "rare",      note: "I rally people and run events at festival scale.", tools: "festivals 1000+ · PR", side: "soft" },
   ],
 
   // work experience = quests (острие-relevant first)
   quests: [
-    { title: "Signals in the Noise", giver: "ASP-LAB, Nazarbayev University", dates: "2023 - present", status: "ACTIVE", diff: 4, exp: 900,
+    { title: "The Growth Ledger", giver: "Nomad Venture Studio · JobEscape, US subscription app", dates: "Jun 2026 - present", status: "ACTIVE", diff: 5, exp: 1500,
       log: [
-        "Research on pulling clean signals out of noisy data, from wearables to genomic signals, and built the ML that does it (PyTorch, scikit-learn).",
-        "Containerized the lab's ML workflows as multi-service Docker / Compose setups, so experiments reproduce identically on any machine.",
-        "Built evaluation harnesses that score model outputs and flag the ones that look right but quietly fail held-out checks.",
-      ], reward: "patience, a love for research, and a nose for results that are too good to be true",
-      photos: ["assets/photos/asplab-conference.jpg", "assets/photos/asplab-setup.jpg"] },
-    { title: "Keeper of the National Ledger", giver: "Climate Change Coordination Centre", dates: "2026 - present", status: "ACTIVE", diff: 4, exp: 1200,
+        "Audited the ROI reports behind 3,500+ ad creatives and found a metric error that made ROI look up to 19 pp better than it was.",
+        "Run A/B tests on the web funnel and paywall end to end: the hypothesis, the PRD, the sample size, and the analysis at the end.",
+        "Broke churn down into its real causes: 36% of it was failed payments, not people choosing to leave.",
+        "Built revenue anomaly monitoring on production data (SQL, ClickHouse). It caught a 24.7% drop that nobody had reported.",
+        "Built an LLM pipeline that turns App Store and Trustpilot reviews into topics and short summaries.",
+      ], reward: "a habit of asking whether a scary number is real before anyone panics" },
+    { title: "Judge of Machines", giver: "Polymath Labs (remote contract)", dates: "Jul - Sep 2026", status: "COMPLETE", diff: 4, exp: 1000,
+      log: [
+        "Designed graders that decide whether a frontier LLM really solved a software task, plus checks that catch it gaming the test (reward hacking).",
+        "Automated building and checking the task environments with Docker, Kubernetes and Bash.",
+      ], reward: "a sharp eye for results that pass the test but miss the point" },
+    { title: "Keeper of the National Ledger", giver: "Climate Change Coordination Centre", dates: "Mar - Jun 2026", status: "COMPLETE", diff: 4, exp: 1200,
       log: [
         "Designed and shipped the centre's official website, climate.kz: structure, layout, multilingual content, SEO.",
         "Built the first version of Kazakhstan's national greenhouse-gas forecast, a big multi-sector model (LEAP).",
@@ -76,14 +78,13 @@ This is just an easy way to show what I've been up to. Have a look around, no ru
         "Helped run a national expert workshop (guest lists, invites, all the logistics).",
       ], reward: "saw how big modeling decisions actually get made",
       photos: ["assets/photos/kcic-office.jpg", "assets/photos/kcic-conference.jpg"] },
-    { title: "The Iron Knee", giver: "Robotics for Rehabilitation, Nazarbayev University", dates: "2026", status: "COMPLETE", diff: 4, exp: 800,
+    { title: "Signals in the Noise", giver: "ASP-LAB, Nazarbayev University", dates: "Sep 2024 - May 2026", status: "COMPLETE", diff: 4, exp: 900,
       log: [
-        "Built a powered knee rehabilitation exoskeleton with four teammates. I took the drive side: picking the motor and writing the control that actually moves the joint.",
-        "Sized the actuator from a torque budget. Gravity alone pulls on the knee with about 11 N·m for a 75 kg patient, and doubling that for safety set the requirement, which picked out a brushless CubeMars AK80-64.",
-        "Commissioned the drive on an ODrive controller: a velocity loop with a position loop on top, following a clinical 0 to 90 degree flexion path, with the encoder logged to prove the joint really tracked it.",
-        "Frame modelled in Fusion, printed in PLA, then assembled and wired up on the bench.",
-      ], reward: "the feeling of a control loop moving something real and heavy",
-      photos: ["assets/photos/exo-assembly.jpg", "assets/photos/exo-bench.jpg"] },
+        "Research on pulling clean signals out of noisy data, from wearables to genomic signals, and built the ML that does it (PyTorch, scikit-learn).",
+        "Containerized the lab's ML workflows as multi-service Docker / Compose setups, so experiments reproduce identically on any machine.",
+        "Built evaluation harnesses that score model outputs and flag the ones that look right but quietly fail held-out checks.",
+      ], reward: "patience, a love for research, and a nose for results that are too good to be true",
+      photos: ["assets/photos/asplab-conference.jpg", "assets/photos/asplab-setup.jpg"] },
     { title: "The Simulation Contract", giver: "WSE LLP", dates: "2024 - 2025", status: "COMPLETE", diff: 3, exp: 600,
       log: [
         "Modeled how electronic systems behave (control & signal), and simulated their failure modes.",
@@ -111,18 +112,30 @@ This is just an easy way to show what I've been up to. Have a look around, no ru
 
   // pet projects = pets (the pun). острие flagships first.
   pets: [
-    { name: "climate.kz", species: "Ancient (production)", lvl: 9, sigil: "❂",
-      tags: ["web design", "production", "SEO"],
-      desc: "The official website of the Climate Change Coordination Centre, designed and built by me end to end: structure, layout, multilingual content, SEO. A real site for a real organization, live in production.",
-      link: "https://climate.kz" },
-    { name: "the Forge", species: "Proving Ground", lvl: 8, sigil: "⊟",
-      tags: ["RL env", "self-play", "evals"],
-      desc: "A reinforcement-learning environment I built end to end: a world behind a narrow interface, a self-play loop that learns to win it, and a Monte-Carlo grader that scores thousands of seeded runs. The learned policy found an exploit my hand-written bots never used, exactly the corner-cutting good environments exist to catch.",
-      link: "https://github.com/Alyasska/seed-artifact" },
     { name: "chitin-coast", species: "World-Serpent", lvl: 9, sigil: "≈§≈",
       tags: ["Python", "simulation", "geospatial"],
       desc: "A whole made-up world I grew from scratch (land, weather, rivers, towns) as a reproducible pipeline (rasterio/GDAL, GeoTIFF/GeoJSON) with a deck.gl 3D viewer on top. My baby.",
       link: "https://github.com/Alyasska/chitin-coast" },
+    { name: "the Forge", species: "Proving Ground", lvl: 8, sigil: "⊟",
+      tags: ["RL env", "self-play", "evals"],
+      desc: "A reinforcement-learning environment I built end to end: a world behind a narrow interface, a self-play loop that learns to win it, and a Monte-Carlo grader that scores thousands of seeded runs. The learned policy found an exploit my hand-written bots never used, exactly the corner-cutting good environments exist to catch.",
+      link: "https://github.com/Alyasska/seed-artifact" },
+    { name: "the board game", species: "Familiar (in training)", lvl: 3, sigil: "⚄",
+      tags: ["tabletop", "systems design"],
+      desc: "A board game I'm designing myself: rules, balance, the works. Still in the oven.",
+      link: "" },
+    { name: "climate.kz", species: "Ancient (production)", lvl: 9, sigil: "❂",
+      tags: ["web design", "production", "SEO"],
+      desc: "The official website of the Climate Change Coordination Centre, designed and built by me end to end: structure, layout, multilingual content, SEO. A real site for a real organization, live in production.",
+      link: "https://climate.kz" },
+    { name: "the Iron Knee", species: "Iron Golem", lvl: 7, sigil: "⏦",
+      tags: ["robotics", "control", "team build"],
+      desc: "A powered knee rehabilitation exoskeleton built with four teammates. I took the drive: sized the brushless motor from a torque budget and tuned the control so the joint follows a clinical 0 to 90 degree path.",
+      link: "" },
+    { name: "root app", species: "Guardian", lvl: 7, sigil: "❖",
+      tags: ["app", "full-stack"],
+      desc: "A full app I'm genuinely proud of, one of my best builds.",
+      link: "https://alyasska.github.io/root_app/" },
     { name: "protein-coding", species: "Helix-Wyrm", lvl: 6, sigil: "≀",
       tags: ["Python", "ML", "signals"],
       desc: "Code that finds the meaningful bits inside DNA using signal-processing tricks.",
@@ -131,25 +144,17 @@ This is just an easy way to show what I've been up to. Have a look around, no ru
       tags: ["JavaScript", "world-gen"],
       desc: "A little tool that builds worlds and maps on its own.",
       link: "https://github.com/Alyasska/World_Engine" },
-    { name: "root app", species: "Guardian", lvl: 7, sigil: "❖",
-      tags: ["app", "full-stack"],
-      desc: "A full app I'm genuinely proud of, one of my best builds.",
-      link: "https://alyasska.github.io/root_app/" },
     { name: "world_building", species: "Sprite", lvl: 3, sigil: "✦",
       tags: ["TypeScript", "world-gen"],
       desc: "A small toolkit for building worlds.",
       link: "https://github.com/Alyasska/world_building" },
-    { name: "the board game", species: "Familiar (in training)", lvl: 3, sigil: "⚄",
-      tags: ["tabletop", "systems design"],
-      desc: "A board game I'm designing myself: rules, balance, the works. Still in the oven.",
-      link: "" },
   ],
 
   // clubs = guilds
   guilds: [
-    { name: "The Board Games Guild", org: "NU Board Games Club", rank: "Game Master · Treasurer · PR", years: "4+ yrs",
+    { name: "The Board Games Guild", org: "Board Games Club", rank: "Game Master · Treasurer · PR", years: "4+ years",
       logo: "assets/logos/boardgames.png",
-      blurb: "My home base, honestly, the thing I'm proudest of. I've run game nights every week for 4+ years and been game master for 150+ board games. That's where I learned to design systems with clear win/lose conditions and to balance them so no single strategy quietly dominates, the same instinct I bring to building environments. Once a year we throw a 200+ person festival on campus (Minecraft, Adventure Time, Medieval) built entirely around playing board games.",
+      blurb: "My home base, honestly, the thing I'm proudest of. I've run game nights every week for 4+ years and been game master for 150+ board games. That's where I learned to balance systems so no single strategy quietly dominates, the same instinct I bring to reading player data and game economies. Once a year we throw a 200+ person festival (Minecraft, Adventure Time, Medieval) built entirely around playing board games.",
       ig: "https://www.instagram.com/nu.boardgames",
       photos: ["assets/photos/bg-minecraft.jpg", "assets/photos/bg-technoblade.jpg", "assets/photos/bg-adventuretime.jpg", "assets/photos/bg-medieval.jpg"],
       // games I can teach. English titles, de-duplicated, base games only (no expansions/DLC).
@@ -171,22 +176,22 @@ This is just an easy way to show what I've been up to. Have a look around, no ru
         "Cragmorta", "Ghost Writer", "Just One", "My Island", "Trajan", "Middle Ages",
         "Aurum", "Courtiers", "Extinction", "Level 8", "High Society", "Core", "Jenga",
       ] },
-    { name: "Order of the Rising Sun", org: "Japanese Culture Club", rank: "Vice-President", years: "2024",
+    { name: "Order of the Rising Sun", org: "Japanese Culture Club", rank: "Vice-President", years: "festival lead",
       logo: "assets/logos/japanese.png",
-      blurb: "Vice-president. I ran “Japan Day”, one of the biggest festivals at our uni, with 50+ volunteers and hundreds of guests.",
+      blurb: "Vice-president. I ran “Japan Day”, a festival with 50+ volunteers and hundreds of guests.",
       ig: "https://www.instagram.com/nu_japanese_club" },
-    { name: "The Signal Workshop", org: "NU IEEE Student Branch", rank: "Vice Chair · Head of PR · Elections", years: "2023 - now",
+    { name: "The Signal Workshop", org: "IEEE Signal Processing Society", rank: "Vice Chair · Head of PR · Elections", years: "talks & podcasts",
       logo: "assets/logos/ieee.png",
-      blurb: "Helped run talks, podcasts, the PR, and the club elections.",
-      ig: "https://www.instagram.com/nuieee_sb" },
+      blurb: "Helped run talks, podcasts, the PR, and the elections." },
   ],
 
   achievements: [
-    "Built a powered knee exoskeleton that follows a clinical rehab path: motor sizing, drive, and control",
+    "Caught an unreported 24.7% revenue drop with monitoring I built",
+    "Found a metric error that inflated ad ROI by up to 19 pp across 3,500+ creatives",
+    "Showed that 36% of churn was failed payments, not people leaving",
+    "Built graders that catch frontier LLMs gaming the test (Polymath Labs)",
     "Built a full RL environment from scratch: self-play + a Monte-Carlo grader (the Forge)",
-    "Won a fully-funded master's at KAIST in Korea (the GKS scholarship)",
     "Top 10 at Higgsfield's hackathon (Kazakhstan's first AI unicorn)",
     "Helped write part of Kazakhstan's climate report to the UN",
-    "Top 6 of 45 in my engineering class · GPA 3.5 / 4.0",
   ],
 };

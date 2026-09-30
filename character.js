@@ -11,7 +11,7 @@ const CHARACTER = {
   class: "Product & Marketing Analyst",
   title: "the Worldbuilder",
   level: 23,
-  tagline: "I find the reason behind the number - paid acquisition, A/B tests, churn and revenue for a US subscription app.",
+  tagline: "I find the reason behind the number - paid acquisition, A/B tests, churn and revenue for a global subscription app.",
   origin: "Astana, Kazakhstan",
   avatar: "assets/avatar.png",
   languages: ["Kazakh: native", "Russian: native", "English: C1", "Japanese: learning"],
@@ -23,7 +23,7 @@ const CHARACTER = {
   },
 
   codex:
-`Hi, I'm Aliaskar. I'm a product and marketing analyst from Astana. Right now I work on JobEscape, a subscription app for the US market: paid acquisition, A/B tests, churn, and keeping an eye on revenue.
+`Hi, I'm Aliaskar. I'm a product and marketing analyst from Astana. Right now I work on JobEscape, a subscription app sold worldwide, mostly in Tier-1 countries: paid acquisition, A/B tests, churn, and keeping an eye on revenue.
 
 My favourite part of the job is the moment a number stops making sense. Usually it's a broken metric, a failed payment, or a test that ended too early, and finding out which one it is feels a lot like solving a mystery.
 
@@ -57,7 +57,7 @@ Outside of work I run tabletop games, design a board game of my own, and build l
 
   // work experience = quests (острие-relevant first)
   quests: [
-    { title: "The Growth Ledger", giver: "Nomad Venture Studio · JobEscape, US subscription app", dates: "Jun 2026 - present", status: "ACTIVE", diff: 5, exp: 1500,
+    { title: "The Growth Ledger", giver: "Nomad Venture Studio · JobEscape, global subscription app", dates: "Jun 2026 - present", status: "ACTIVE", diff: 5, exp: 1500,
       log: [
         "Audited the ROI reports behind 3,500+ ad creatives and found a metric error that made ROI look up to 19 pp better than it was.",
         "Run A/B tests on the web funnel and paywall end to end: the hypothesis, the PRD, the sample size, and the analysis at the end.",
